@@ -1,0 +1,65 @@
+coder,url,first_author,publication_year,notes,qrp_1,qrp_2,qrp_3,qrp_4,qrp_5,qrp_6,qrp_7,qrp_8,qrp_9,qrp_10,qrp_absolute_time_range,qrp_relative_time_stem,population
+coder name,paper url,last name of first author,publication year,notes imported from zotero,includes question about failing to report all DVs (yes/no),includes question about collecting more data after checking for significance (yes/no),includes question about failing to report all conditions (yes/no),includes question about stopping data collection early after getting desired result (yes/no),includes question about rounding p values to obtain signifigance (yes/no),includes question about selectively reporting studies that worked (yes/no),includes question about excluding obs on the basis of effect on result (yes/no),includes question about HARKing (yes/no),includes question about generalizing to untested demographics (yes/no),includes question about falsifying data (yes/no),date range when survey was administered,question stem wording re: time frame people were asked to report on,population description
+hannah,https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002106,Head,2015,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://doi.org/10.1177/0956797611430953,John,2012,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://www.tandfonline.com/doi/full/10.1080/08989620500440253,Broome,2005,"Provides an initial questionnaire development and factor analysis with some known-groups analysis for validation. <p>Means of individual items could be interesting.</p> <p>p276: ""Just over one-fifth (21.5%, n = 334) of all respondents indicated that they had first-hand knowledge of an occurrence of scientific misconduct. An in-depth qualitative analysis of these data is on-going, and beyond the scope of this paper, but will be reported elsewhere."" </p>",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://osf.io/bk8y7/,Beaudry,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,http://doi.wiley.com/10.1002/asi.23424,Kim,2016,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,http://doi.wiley.com/10.1002/meet.14504901348,Kim,2012,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0183216,Linek,2017,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://dx.plos.org/10.1371/journal.pone.0175635,Héroux,2017,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,http://doi.apa.org/getdoi.cfm?doi=10.1037/tep0000322,Swift,2020,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://osf.io/hs7wm,Flake,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,NA,Fraser,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://doi.org/10.1177/0149206315619011,Banks,2016,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://www.elsevier.com/about/open-science/research-data/open-data-report,CWTS,2017,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1471-8847.2012.00339.x,Okonta,2013,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3625237/,Ozturk,2013,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://www.jstor.org/stable/90012091,Hofmann,2015,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://peerj.com/articles/562,Roberts,2014,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://sigmapubs.onlinelibrary.wiley.com/doi/abs/10.1111/jnu.12082,Fierz,2014,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,https://doi.org/10.1186/1472-6939-14-3,Hofmann,2013,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,http://link.springer.com/10.1007/s11948-019-00112-4,Smith,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hannah,http://www.educationforhealth.net/article.asp?issn=1357-6283;year=2017;volume=30;issue=2;spage=140;epage=145;aulast=Mubeen;type=0,Mubeen,2017,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://doi.org/10.1177/1948550615612150,Fiedler,2016,"German psychologists, similar to John et al., 2012",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0005738,Fanelli,2009,"A review and meta-analysis of 18 surveys conducted between 1986-ish and 2005-ish <p>self-reporting: 2% admit falsifying data, ""up to"" 34% admit other QRPs.</p> <p>reporting on others: 14% indicate colleagues have falsified data, ""up to"" 72% for other QRPs.</p> <p> </p>",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://osf.io/5rksu,Christensen,2019,N ~ 2800 social scientists (various career stages) from April to August 2018,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://osf.io/f7srb,Makel,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://zenodo.org/record/3903142#.XvJF5edCT6o,Swiatek,2020,"Dozens of case studies, not summarized. Would require a lot of work to synthesize.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://journals.sagepub.com/doi/10.1177/0270467616668760,Levin,2016,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,NA,Tenopir,2011,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,http://link.springer.com/10.1007/s10869-016-9456-7,Banks,2016,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://onlinelibrary.wiley.com/doi/abs/10.1002/ijop.12632,Rabelo,2020,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://www.acpjournals.org/doi/10.7326/M18-1230,Wang,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://www.bmj.com/content/342/bmj.c7153,Smyth,2011,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://www.jstor.org/stable/90011937,Tijdink,2014,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://linkinghub.elsevier.com/retrieve/pii/S0048733314000900,Necker,2014,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0187394,Fong,2017,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://doi.org/10.1186/s12909-018-1274-3,Tiong,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5750349/,KHADEM,2017,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0199554,Wolff,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,http://ijme.in/articles/publication-misconduct-among-medical-professionals-in-india/?galley=html,Dhingra,2014,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3594440/,Crain,2013,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,NA,Jensen,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+joe,https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5945220/,Felaefel,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,NA,Agnoli,2017,"Italian sample, replication of John et al. 2012",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://psyarxiv.com/3v7hx/,Fox,2018,"N = 613 American psychologists, focused on use of any QRP in last 12 months by selves and colleagues. Data collected between September 2017 and December 2017. <p>*these questions are good candidates for a follow-up*</p>",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://osf.io/5rksu,Christensen,2019,N ~ 2800 social scientists (various career stages) from April to August 2018,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://linkinghub.elsevier.com/retrieve/pii/S0048733310002106,Haeussler,2011,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://doi.org/10.1177/2515245917751886,Houtkoop,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://www.nature.com/articles/palcomms201751,Fecher,2017,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://osf.io/h35wt,Hardwicke,2020,Used subsample of Kidwell et al.: 25 papers published in Psych Science with data badges between 2014-2015,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,http://journals.sagepub.com/doi/10.1177/1948550618790227,Janke,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,http://journal.frontiersin.org/article/10.3389/fpsyg.2015.00535/abstract,Rajah,2015,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://journals.aom.org/doi/abs/10.5465/amle.9.4.zqr715,Bedeian,2010,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1001315,Ana,2013,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://onlinelibrary.wiley.com/doi/abs/10.1111/peps.12111,Bosco,2016,Contacted study authors to ask about modification of hypotheses post-data. 20 of 53 respondents (38%) indicated at least one changed hypothesis.,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://doi.org/10.1007/s11948-014-9600-6,Pupovac,2015,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://www.annualreviews.org/doi/abs/10.1146/annurev-psych-122414-033437,Gross,2016,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,http://www.sciencedirect.com/science/article/pii/S0306460317301363,Miller,2017,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://doi.org/10.1007/s11948-016-9767-0,Pupovac,2017,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://search.proquest.com/docview/2139470173/abstract/4C3A7A4275C048C2PQ/1,Godecharle,2018,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://jme.bmj.com/content/35/6/348,Wager,2009,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0163251,Tijdink,2016,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,http://www.davidpublisher.org/index.php/Home/Article/index?id=8404.html,Ana,2015,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+laura,https://econtent.hogrefe.com/doi/full/10.1027/2151-2604/a000356,Stricker,2019,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA

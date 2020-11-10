@@ -1,0 +1,85 @@
+---
+title: "Summary of Coded Surveys on Psychology Researcher Behavior"
+author: "Hannah Moshontz"
+date: '`r format(Sys.time(), "%Y-%m-%d")`'
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+editor_options: 
+  chunk_output_type: console
+---
+
+## Set up
+```{r, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(warning = FALSE)
+library(tidyverse)
+library(janitor)
+library(gsheet)
+library(kableExtra)
+```
+
+## Import codes from google sheet
+```{r, warning = FALSE, message = FALSE}
+gsheet2tbl("https://docs.google.com/spreadsheets/d/1fY6gPYEY3283W3RPT1u5DmMwuAc-mFZoDdfUb4vcvEI/edit#gid=0") %>%
+  write_csv("behavior_survey_codes.csv")
+
+behavior_survey_codes <- read_csv("./behavior_survey_codes.csv") %>%
+  clean_names("snake") %>%
+  slice(-1) %>%
+  glimpse()
+```
+
+## Describe data 
+
+### Article relevance to quantitative summary
+```{r}
+behavior_survey_codes %>%
+  tabyl(relevant)
+```
+
+### Publication years: yes articles
+```{r}
+behavior_survey_codes %>% 
+  filter(relevant == "yes") %>% 
+  tabyl(publication_year, show_na = TRUE)
+```
+
+### Publication Years: yes and maybe articles
+```{r}
+behavior_survey_codes %>% 
+  filter(relevant != "no") %>% 
+  tabyl(publication_year, show_na = TRUE)
+```
+
+### Notes about relevance: yes articles
+```{r}
+behavior_survey_codes %>% 
+  filter(relevant == "yes") %>% 
+  filter(relevant_reason != "NA") %>% 
+  select(relevant_reason) %>% 
+  kable() %>% 
+  kable_styling()
+```
+
+### Notes about relevance: maybe articles
+```{r}
+behavior_survey_codes %>% 
+  filter(relevant == "maybe") %>% 
+  filter(relevant_reason != "NA") %>% 
+  select(relevant_reason) %>% 
+  kable() %>% 
+  kable_styling()
+```
+
+### Notes about relevance: no articles
+```{r}
+behavior_survey_codes %>% 
+  filter(relevant == "no") %>% 
+  filter(relevant_reason != "NA") %>% 
+  select(relevant_reason) %>% 
+  kable() %>% 
+  kable_styling()
+```
+

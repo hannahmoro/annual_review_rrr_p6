@@ -1,0 +1,242 @@
+﻿VariableNameInData,VariableType,VariableNameInSurvey,ItemText,ItemTextShort,MinValue,MaxValue,Scoring,ReverseCoded,FactorLevels,Scale
+ParticipantNumber,integer,ParticipantNumber,Participant Number Assigned After Data Collection,Participant Number,,,,,,
+,,,,,,,,,,
+OverallExp,factor,OverallExperience,What is your experience with open science practices? ,,,,,,"""Until now, I was unaware of open science practices""; ""I am aware of open science, but have not used open science practices in my research"" ""I have some experience with open science practices""; ""I have extensive experience with open science practices""",
+,,,,,,,,,,
+PreRegImp,factor,PreRegImp,"In your opinion, how important for your field is it that researchers preregister their studies?",,,,,,"""Researchers in my discipline do not conduct research studies""; ""Extremely important""; ""Somewhat important""; ""Somewhat unimportant""; ""Not at all important""",
+PreRegExp,factor,PreregExp1,What is your experience with study preregistration?,,,,,,"""Until now, I was unaware of study preregistration""; ""I am aware of study pregistration, but have not used it in my research""; ""I have some experience with study preregistration, but do not use it regularly""; ""I regularly preregister my studies""",
+,,,,,,,,,,
+,,,"Question Stem for PreRegUse: ""How have you used study preregistration?""",,,,,,,
+PreRegUse_clinicalTrial,number,PreregUse_1,I have preregistered at least one clinical trial on a clinical trials database,,,1,1 = endorsement,,,PreRegUse
+PreRegUse_non-clinical,number,PreregUse_2,I have preregistered at least one study that was not a clinical trial,,,1,1 = endorsement,,,PreRegUse
+PreRegUse_RR,number,PreregUse_4,I have submitted a Stage 1 Registered Report to a journal,,,1,1 = endorsement,,,PreRegUse
+PreRegUse_protocol,number,PreregUse_6,I have published a research protocol prior to carrying out the study,,,1,1 = endorsement,,,PreRegUse
+PreRegUse_other,number,PreregUse_7,Other,,,1,1 = endorsement,,,PreRegUse
+PreRegUse_text,string,PreregUse_7_TEXT,Other: Text,,,<text>,,,,PreRegUse
+,,,,,,,,,,
+PreRegHigh,factor,PreRegExp2,Which of the following best describes your highest level of experience with study preregistration?,,,,,,"""I have preregistered a study, but have not yet analysed the data""; ""I have preregistered a study and am currently writing up the manuscript""; ""I have preregistered a study and submitted it for publication""; ""I have published one preregistered study""; ""I have published 2 or more preregistered studies""; ""other"" <see PreRegExpHigh_TEXT variable>",
+PreRegHigh_text,string,PreRegExp2_TEXT,"Text responses for those who selected ""Other"" in PreRegHigh",,,,,,,
+,,,,,,,,,,
+,,,"Question Stem for RRExp: ""Which of the following best describes your highest level of experience with study preregistration?""",,,,,,,
+RRExp_stage1_acc,number,RRExp_1,I have had a Stage 1 acceptance from a journal,,,1,1 = endorsement,,,RRExp
+RRExp_stage2_acc,number,RRExp_4,I have had a Stage 2 acceptance from a journal,,,1,1 = endorsement,,,RRExp
+RRExp_stage1_rej,number,RRExp_5,I have had a Stage 1 rejection from a journal,,,1,1 = endorsement,,,RRExp
+RRExp_stage2_rej,number,RRExp_6,I have had a Stage 2 rejection from a journal,,,1,1 = endorsement,,,RRExp
+RRExp_other,number,RRExp_7,Other,,,1,1 = endorsement,,,RRExp
+RRExp_text,string,RRExp_7_TEXT,Other: Text,,,,,,,
+,,,,,,,,,,
+PreRegConcerns,factor,prereg-concerns,Do you have any concerns about preregistering your studies?,,,,,,"""No""; ""Yes""",
+PreRegConcernsText,string,PreRegConList,What are these concerns?,,,,,,,
+,,,,,,,,,,
+,,,"Question Stem for PreRegConcern_x: ""The following are possible concerns that researchers could have about preregistering their studies. Please place a tick beside any concern that you share."" ",,,,,,,
+PreRegCon_delay,number,PreregConcern_4,It might delay data collection,Delays data collection,,1,1 = endorsement,,,PreRegConcern
+PreRegCon_look,number,PreregConcern_5,I need to look at my data before I can decide how to best analyse it,Need to look at data to analyse it,,1,1 = endorsement,,,PreRegConcern
+PreRegCon_prevent_exp,number,PreregConcern_6,Preregistration prevents exploratory research,Prevents exploratory research,,1,1 = endorsement,,,PreRegConcern
+PreRegCon_stifle_creativity,number,PreregConcern_7,Preregistration stifles research creativity or flexibility,Stifles creativity,,1,1 = endorsement,,,PreRegConcern
+PreRegCon_scooping,number,PreregConcern_8,Preregistration might lead to other people taking my research idea and implementing my plan,Risk of scooping,,1,1 = endorsement,,,PreRegConcern
+PreRegCon_other,number,PreregConcern_9,Other concern,Other concern,,1,1 = endorsement,,,PreRegConcern
+PreRegCon_text,string,PreregConcern_9_TEXT,Other: Text,Other: Text,,,,,,PreRegConcern
+PreRegCon_prevent_sig,number,PreregConcern_10,Preregistration might make it more difficult to find statistically significant results,More difficult to find significant results,,1,1 = endorsement,,,PreRegConcern
+PreRegCon_diff_pub,number,PreregConcern_11,Preregistration might make it more difficult to publish in certain journals,More difficult to publish in certain journals,,1,1 = endorsement,,,PreRegConcern
+PreRegCon_none,number,PreregConcern_12,I do not share any of these concerns,I do not share any of these concerns,,1,1 = endorsement,,,PreRegConcern
+,,,,,,,,,,
+CodeImp,factor,CodeImp,"In your opinion, how important for your field is it that materials and/or code are openly available?",,,,,,"""Researchers in my discipline do not use materials and/or code""; ""Extremely important""; ""Somewhat important""; ""Somewhat unimportant""; ""Not at all important""",
+CodeExp,factor,CodeExp,What is your experience with open materials and/or code?,,,,,,"""Until now, I hadn't heard of open materials and/or code""; ""I am aware of open materials and/or code, but have not used it in my research""; ""I have some experience with open materials and/or code, but do not use them regularly""; ""I regularly use open materials and/or code""",
+,,,,,,,,,,
+,,,"Question Stem for CodeUse: ""How have you used open materials and/or code?""",,,,,,,
+CodeUse_useOthers,number,CodeUse_1,I have used other researchers' open materials and/or code in my research,,,1,1 = endorsement,,,CodeUse
+CodeUse_mine,number,CodeUse_2,I have made my materials and/or code openly available,,,1,1 = endorsement,,,CodeUse
+CodeUse_reading,number,CodeUse_3,I have used open materials and/or code when reading other researchers' work,,,1,1 = endorsement,,,CodeUse
+CodeUse_other,number,CodeUse_5,Other use,,,1,1 = endorsement,,,CodeUse
+CodeUse_text,string,CodeUse_5_TEXT,Other: Text,,,,,,,CodeUse
+CodeUse_peer,number,CodeUse_6,I have used other researchers' open materials and/or code when peer reviewing their work,,,1,1 = endorsement,,,CodeUse
+,,,,,,,,,,
+CodeConcerns,factor,Code-concerns,Do you have any concerns about making your materials and/or code openly available,,,,,,"""No""; ""Yes""",
+CodeConcernsText,string,CodeConcernList,What are these concerns?,,,,,,,
+,,,,,,,,,,
+,,,"Question Stem for CodeConcern_x: ""The following are possible concerns that researchers could have about making their materials and/or code openly available. Please place a tick beside any concern that you share.""",,,,,,,
+CodeCon_criticise,number,CodeConcern_4,Other researchers might criticise my materials and/or code,Others might criticise my materials/code,,1,1 = endorsement,,,CodeConcern
+CodeCon_diff_understand,number,CodeConcern_5,Others might find it difficult to understand my materials and/or code,Others might find it difficult to understand my materials/code,,1,1 = endorsement,,,CodeConcern
+CodeCon_assistance,number,CodeConcern_6,Sharing these materials and/or code could result in others asking me to provide assistance for their research,Others might ask me to provide assistance with their research,,1,1 = endorsement,,,CodeConcern
+CodeCon_lose_control,number,CodeConcern_7,I might lose control over how my materials and/or code are being used,I might lose control over how they are used,,1,1 = endorsement,,,CodeConcern
+CodeCon_errors,number,CodeConcern_8,Other researchers might find errors in my published work,Others might find errors in my published work,,1,1 = endorsement,,,CodeConcern
+CodeCon_credit,number,CodeConcern_9,I might not receive appropriate credit for developing the materials and/or code if I make them openly available,I might not receive appropriate credit,,1,1 = endorsement,,,CodeConcern
+CodeCon_other,number,CodeConcern_10,Other concern,Other concern,,1,1 = endorsement,,,CodeConcern
+CodeCon_text,string,CodeConcern_10_TEXT,Other: Text,Other: Text,,,,,,CodeConcern
+CodeCon_none,number,CodeConcern_12,I do not share any of these concerns,I do not share any of these concerns,,1,1 = endorsement,,,CodeConcern
+CodeCon_violate,number,CodeConcern_13,Reuse of my materials and/or code could violate the epistemological framework of my research,Reuse could violate epistemological framework,,1,1 = endorsement,,,CodeConcern
+CodeCon_ip,number,CodeConcern_14,There could be issues related to intellectual property,Issues related to intellectual property,,1,1 = endorsement,,,CodeConcern
+,,,,,,,,,,
+DataImp,factor,OpenDataImp,"In your opinion, how important for your field is it that data from published research are openly available?",,,,,,"""Extremely important""; ""Somewhat important""; ""Somewhat unimportant""; ""Not at all important""",
+DataExp,factor,OpenDataExp,What is your experience with open data?,,,,,,"""Until now, I was unaware of pre-publication archiving""; ""I am aware of pre-publication archiving but have not used it""; ""I have some experience with pre-publication archiving""; ""I have extensive experience with pre-publication archiving""",
+,,,,,,,,,,
+,,,"Question Stem for OpenDataUse_x: ""How have you used open data?""",,,,,,,
+DataUse_useOthers,number,OpenDataUse_1,"I have used open data from other sources (e.g., researchers, government, etc.) in my research",,,1,1 = endorsement,,,DataUse
+DataUse_mine,number,OpenDataUse_2,I have made my research data open,,,1,1 = endorsement,,,DataUse
+DataUse_peer,number,OpenDataUse_3,I have used open data when peer reviewing other researchers' work,,,1,1 = endorsement,,,DataUse
+DataUse_reading,number,OpenDataUse_4,I have used open data when reading other researchers' work,,,1,1 = endorsement,,,DataUse
+DataUse_other,number,OpenDataUse_5,Other use,,,1,1 = endorsement,,,DataUse
+DataUse_text,string,OpenDataUse_5_TEXT,Other: Text,,,,,,,DataUse
+,,,,,,,,,,
+DataConcerns,factor,Data-Concerns,Do you have any concerns about making your data openly available,,,,,,"""No""; ""Yes""",
+DataConcernsText,string,DataConcernsList,What are these concerns?,,,,,,,
+,,,,,,,,,,
+,,,"Question Stem for OpenDataConcern_x: ""The following are possible concerns that researchers could have about making their data openly available. Please place a tick beside any concern that you share.""",,,,,,,
+DataConcern_criticise,number,OpenDataConcern_1,Other researchers might criticise my data and/or research practices,Others might criticise my data and/or research practices,,1,1 = endorsement,,,DataConcern
+DataConcern_ip,number,OpenDataConcern_2,There could be issues related to intellectual property,Issues related to intellectual property,,1,1 = endorsement,,,DataConcern
+DataConcern_devalues,number,OpenDataConcern_3,It devalues research data collection,It devalues research data collection,,1,1 = endorsement,,,DataConcern
+DataConcern_other,number,OpenDataConcern_5,Other concern,Other concern,,1,1 = endorsement,,,DataConcern
+DataConcern_text,string,OpenDataConcern_5_TEXT,Other: Text,Other: Text,,1,1 = endorsement,,,DataConcern
+DataConcern_none,number,OpenDataConcern_6,I do not share any of these concerns,I do not share any of these concerns,,1,1 = endorsement,,,DataConcern
+DataConcern_effort,number,OpenDataConcern_7,It will take too much time or effort to share research data,Too much time or effort,,1,1 = endorsement,,,DataConcern
+DataConcern_unfair,number,OpenDataConcern_8,"I think it is unfair for researchers beyond the original team to benefit (e.g., through future publications, career advancement) from my data collection",Unfair for other researchers to benefit from my data collection,,1,1 = endorsement,,,DataConcern
+DataConcern_credit,number,OpenDataConcern_9,I might not receive appropriate credit for my data collection,I might not receive appropriate credit for my data collection,,1,1 = endorsement,,,DataConcern
+DataConcern_ethics,number,OpenDataConcern_10,There could be issues related to ethics,Issues related to ethics,,1,1 = endorsement,,,DataConcern
+DataConcern_privacy,number,OpenDataConcern_11,There could be issues related to privacy,Issues related to privacy,,1,1 = endorsement,,,DataConcern
+DataConcern_control,number,OpenDataConcern_12,I might lose control over how my data are being used,I might lose control over how my data are being used,,1,1 = endorsement,,,DataConcern
+DataConcern_scoop,number,OpenDataConcern_13,Other researchers could use my data for another study that I intended to conduct in the future,Others could use my data for another study that I intended to conduct in the future,,1,1 = endorsement,,,DataConcern
+,,,,,,,,,,
+PrePubImp,factor,PrePubImp,"In your opinion, how important is pre-publication archiving for your field?",,,,,,"""Research publications in my field are not based on data""; ""Extremely important""; ""Somewhat important""; ""Somewhat unimportant""; ""Not at all important""",
+PrePubExp,factor,PrePubExp,What is your experience with pre-publication archiving?,,,,,,"""Until now, I was unaware of open data""; ""I am aware of open data, but have not used this in my research""; ""I have some experience using open data, but do not use them regularly""; ""I regularly use open data""",
+,,,,,,,,,,
+,,,"Question Stem for PrePubUse_x: ""In what ways have you used pre-publication archiving?""",,,,,,,
+PrePubUse_upload,number,PrePubUse_4,I have uploaded a manuscript to a pre-publication archive before submission to a journal,,,1,1 = endorsement,,,PrePubUse
+PrePubUse_other,number,PrePubUse_5,Other use,,,1,1 = endorsement,,,PrePubUse
+PrePubUse_text,string,PrePubUse_5_TEXT,Other: Text,,,,,,,PrePubUse
+PrePubUse_cited,number,PrePubUse_9,I have cited a manuscript from a pre-publication archive,,,1,1 = endorsement,,,PrePubUse
+PrePubUse_read,number,PrePubUse_10,"I have read an article from, searched, or browsed a pre-publication archive",,,1,1 = endorsement,,,PrePubUse
+,,,,,,,,,,
+PrePubConcerns,factor,PrePub-Concerns,Do you have any concerns about uploading a manuscript to a pre-publication archive before submitting it for peer review?,,,,,,"""No""; ""Yes""",
+PrePubConcernsText,string,PrePubConcernsText,What are these concerns?,,,,,,,
+,,,,,,,,,,
+,,,"Question Stem for PrePubConcern_x: The following are possible concerns that researchers could have about uploading a manuscript to a pre-publication archive before submitting it for peer review. Please place a tick beside any concern that you share.""",,,,,,,
+PrePubConcern_policy,number,PrePubConcernList_4,Some journals might not publish findings that are uploaded to a pre-publication archive,Some journals might not publish the uploaded manuscript,,1,1 = endorsement,,,PrePubConcern
+PrePubConcern_scoop,number,PrePubConcernList_5,Other people might copy my research and publish it before I do,Other people might copy my research and publish it before I do,,1,1 = endorsement,,,PrePubConcern
+PrePubConcern_noise,number,PrePubConcernList_6,Non-peer-reviewed findings might add noise to the literature,Non-peer-reviewed findings might add noise to the literature,,1,1 = endorsement,,,PrePubConcern
+PrePubConcern_citations,number,PrePubConcernList_7,Making my work available pre-publication might reduce the number of citations to the ultimately published work,Making my work available pre-publication might reduce citations of the ultimately published work,,1,1 = endorsement,,,PrePubConcern
+PrePubConcern_other,number,PrePubConcernList_8,Other concern,Other concern,,1,1 = endorsement,,,PrePubConcern
+PrePubConcern_text,string,PrePubConcernList_8_TEXT,Other: Text,Other: Text,,,,,,PrePubConcern
+PrePubConcern_compare,number,PrePubConcernList_9,"Availability of the pre-publication manuscript might highlight differences (e.g., errors in analysis; revisions to hypotheses) between the original conception of the research and the ultimately published work",Others could see differences between the original conception and the ultimately published work,,1,1 = endorsement,,,PrePubConcern
+PrePubConcern_none,number,PrePubConcernList_11,I do not share any of these concerns,I do not share any of these concerns,,1,1 = endorsement,,,PrePubConcern
+,,,,,,,,,,
+OAprop,factor,OAprop,Approximately what proportion of your publications from the last 5 years are open access? ,,,,,,"""None""; ""All""; ""Most""; ""Half""; ""Some""; ""I don't know""",
+,,,,,,,,,,
+,,,"Question Stem for OAfees_x: ""Many open access journals charge a fee for processing the article for publication. How have you managed payment of these fees?""",,,,,,,
+OAfees_free,number,OAfees_1,My open access publications did not involve fees,,,1,1 = endorsement,,,OAfees
+OAfees_research_income,number,OAfees_2,I paid the fees from my own research income,,,1,1 = endorsement,,,OAfees
+OAfees_centre,number,OAfees_3,My centre/department paid the fees,,,1,1 = endorsement,,,OAfees
+OAfees_school,number,OAfees_4,My school/faculty paid the fees,,,1,1 = endorsement,,,OAfees
+OAfees_collab,number,OAfees_5,A non-Swinburne collaborator paid the fees,,,1,1 = endorsement,,,OAfees
+OAfees_own_money,number,OAfees_6,I paid the fees with my personal money,,,1,1 = endorsement,,,OAfees
+OAfees_other,number,OAfees_7,Other method,,,1,1 = endorsement,,,OAfees
+OAfees_text,string,OAfees_7_TEXT,Other: Text,,,,,,,OAfees
+OAfees_withdrew,number,OAfees_8,I could not afford to pay the fees and withdrew the manuscript,,,1,1 = endorsement,,,OAfees
+OAfees_waiver,number,OAfees_10,I received a fee waiver from the journal,,,1,1 = endorsement,,,OAfees
+OAfees_hdr,number,OAfees_11,My HDR student paid the fees with their research funding,,,1,1 = endorsement,,,OAfees
+,,,,,,,,,,
+LastStudy,factor,LastStudy,Consider the last study you published. How feasible would it be for another researcher with similar resources to attempt to conduct an identical study (including data collection and analysis)?,,,,,,"""All info needed is in publication""'; ""All info needed is openly available"";  ""Need info from research team"";  ""Not possible because of context""; ""Not possible because of other reasons""; ""I do not conduct research studies"";   ""Other""",
+LastStudy_text,string,LastStudy_TEXT,"Text responses for ""LastStudy"" question",,,,,,,
+,,,,,,,,,,
+,,,"Question Stem for OSmost_x: ""Which of the following open science practices (if any) are commonly used in your field?""",,,,,,,
+OSmost_data,number,OSmost_1,Open data,,,1,1 = endorsement,,,OSmost
+OSmost_code,number,OSmost_2,Open materials/code,,,1,1 = endorsement,,,OSmost
+OSmost_prepub,number,OSmost_3,Pre-publication archiving,,,1,1 = endorsement,,,OSmost
+OSmost_prereg,number,OSmost_4,Study preregistration,,,1,1 = endorsement,,,OSmost
+OSmost_none,number,OSmost_5,None,,,1,1 = endorsement,,,OSmost
+OSmost_OA,number,OSmost_6,Open access publishing,,,1,1 = endorsement,,,OSmost
+OSmost_unknown,number,OSmost_7,I don't know about the open science practices of researchers in my field,,,1,1 = endorsement,,,OSmost
+OSmost_other,number,OSmost_9,Other,,,1,1 = endorsement,,,OSmost
+OSmost_text,string,OSmost_9_TEXT,Other: Text,,,,,,,OSmost
+OSmost_repo,number,OSmost_10,Open access archiving in a repository,,,1,1 = endorsement,,,OSmost
+,,,,,,,,,,
+,,,"Question Stem for OSTools_x: ""Please indicate your awareness of each of the open science resources listed below. If there are other resources that you use or are aware of, please enter them in the ""other"" box at the bottom of the table.",,,,,,,
+OSTools_osf,factor,OSTools_1,Open Science Framework,,,,"""I'm unaware of this""; ""I use this""; ""I'm aware of it, but don't use""",,,
+OSTools_github,factor,OSTools_2,GitHub,,,,"""I'm unaware of this""; ""I use this""; ""I'm aware of it, but don't use""",,,
+OSTools_ardc,factor,OSTools_3,Australian Research Data Commons,,,,"""I'm unaware of this""; ""I use this""; ""I'm aware of it, but don't use""",,,
+OSTools_csiro,factor,OSTools_4,CSIRO Knowledge Network,,,,"""I'm unaware of this""; ""I use this""; ""I'm aware of it, but don't use""",,,
+OSTools_cloudstor,factor,OSTools_5,AARNet CloudStor,,,,"""I'm unaware of this""; ""I use this""; ""I'm aware of it, but don't use""",,,
+OSTools_embl,factor,OSTools_6,EMBL Australia Bioinformatics Resource,,,,"""I'm unaware of this""; ""I use this""; ""I'm aware of it, but don't use""",,,
+OSTools_figshare,factor,OSTools_7,Figshare,,,,"""I'm unaware of this""; ""I use this""; ""I'm aware of it, but don't use""",,,
+OSTools_code,factor,OSTools_8,Code Ocean,,,,"""I'm unaware of this""; ""I use this""; ""I'm aware of it, but don't use""",,,
+OSTools_datacite,factor,OSTools_9,"DataCite, including re3data",,,,"""I'm unaware of this""; ""I use this""; ""I'm aware of it, but don't use""",,,
+OSTools_toolbox,factor,OSTools_10,LMU Open Science Toolbox,,,,"""I'm unaware of this""; ""I use this""; ""I'm aware of it, but don't use""",,,
+OSTools_orcid,factor,OSTools_11,ORCID,,,,"""I'm unaware of this""; ""I use this""; ""I'm aware of it, but don't use""",,,
+OSTools_FAIR,factor,OSTools_12,FAIR data principles,,,,"""I'm unaware of this""; ""I use this""; ""I'm aware of it, but don't use""",,,
+OSTools_instRepo,factor,OSTools_22,"Institutional publication repository (e.g., Swinburne ResearchBank)",,,,"""I'm unaware of this""; ""I use this""; ""I'm aware of it, but don't use""",,,
+,,,,,,,,,,
+OSToolsText,string,OSToolsOther,"If you use or are aware of other resources in your discipline, please list them below including a URL for the resource, where possible (e.g., ""I use Databrary: databrary.org"").",,,,,,,
+,,,,,,,,,,
+OSBarriers,factor,OSBarriers,Are there any barriers that prevent you from adopting open science practices? ,,,,,,"""No""; ""Yes""",
+OSBarriersText,string,OSBarriersText,What are these barriers?,,,,,,,
+OSFacilitateText,string,OSFacilitate,What could help you overcome the barriers you identified? ,,,,,,,
+,,,,,,,,,,
+,,,"Question Stem for OSBarrier_x: ""The following are possible barriers to the uptake of open science practices. Please place a tick beside any statement that you agree is a barrier in your field.""",,,,,,,
+OSBarrier_noOAFunding,number,OSBarriersList_1,Lack of funding for open access publishing,Lack of funding for open access publishing,,1,1 = endorsement,,,OSBarrier
+OSBarrier_noCredit,number,OSBarriersList_2,Lack of credit in my institution for engaging in open science,Lack of institutional credit,,1,1 = endorsement,,,OSBarrier
+OSBarrier_noMandate,number,OSBarriersList_3,"Lack of mandates from funders, institutions or other regulators","Lack of mandates from funders, institutions, or regulators",,1,1 = endorsement,,,OSBarrier
+OSBarrier_noInfo,number,OSBarriersList_4,Lack of information about open science practices,Lack of information,,1,1 = endorsement,,,OSBarrier
+OSBarrier_noInfrastructure,number,OSBarriersList_5,"Lack of supporting infrastructure (e.g., open data platforms)",Lack of supporting infrastructure ,,1,1 = endorsement,,,OSBarrier
+OSBarrier_noTimeEngage,number,OSBarriersList_6,Lack of time to engage in open science practices,Lack of time to engage,,1,1 = endorsement,,,OSBarrier
+OSBarrier_colleaguesDis,number,OSBarriersList_8,Researchers are discouraged from engaging in open science practices by their colleagues,Researchers are discouraged by colleagues,,1,1 = endorsement,,,OSBarrier
+OSBarrier_noInterest,number,OSBarriersList_9,Lack of interest from researchers,Lack of interest from researchers,,1,1 = endorsement,,,OSBarrier
+OSBarrier_none,number,OSBarriersList_10,I do not perceive any barriers,I do not perceive any barriers,,1,1 = endorsement,,,OSBarrier
+OSBarrier_intimidating,number,OSBarriersList_11,The open science community is intimidating,The OS community is intimidating,,1,1 = endorsement,,,OSBarrier
+OSBarrier_other,number,OSBarriersList_12,Other,Other,,1,1 = endorsement,,,OSBarrier
+OSBarrier_text,string,OSBarriersList_12_TEXT,Other: Text,Other: Text,,,,,,OSBarrier
+OSBarrier_supervisorsDis,number,OSBarriersList_13,HDR students are discouraged from engaging in open science practices by thesis supervisors,HDR students are discouraged by thesis supervisors,,1,1 = endorsement,,,OSBarrier
+OSBarrier_noTraining,number,OSBarriersList_15,Lack of training required to implement open science practices,Lack of training required to implement OS,,1,1 = endorsement,,,OSBarrier
+OSBarrier_independent,number,OSBarriersList_16,Researchers don't want to be told how to do their research,Researchers don't want to be told how to do their research,,1,1 = endorsement,,,OSBarrier
+OSBarrier_noRecognition,number,OSBarriersList_17,Lack of recognition in my field about the value of open science practices,Lack of recognition in my field about the value of OS,,1,1 = endorsement,,,OSBarrier
+OSBarrier_noSupport,number,OSBarriersList_18,Lack of professional staff that provide support for open science practices,Lack of professional staff that provide support ,,1,1 = endorsement,,,OSBarrier
+OSBarrier_noOSFunding,number,OSBarriersList_19,Lack of research funding to support open science practices,Lack of research funding to support OS,,1,1 = endorsement,,,OSBarrier
+OSBarrier_noTimeLearn,number,OSBarriersList_20,Lack of time to learn open science practices,Lack of time to learn,,1,1 = endorsement,,,OSBarrier
+OSBarrier_noExpertise,number,OSBarriersList_21,"Lack of expertise to engage in open science practices (e.g., assignment of metadata)","Lack of expertise (e.g., assignment of metadata)",,1,1 = endorsement,,,OSBarrier
+,,,,,,,,,,
+RepDiscipline,factor,DefRR,"In your opinion, is the concept of reproducibility relevant to your discipline?",,,,"""Yes, for all studies""; ""Yes, but only for some studies""; ""No""",,,
+,,,,,,,,,,
+crisis,factor,crisis,"Which of the following statement regarding a ""crisis of reproducibility"" within your field do you agree with? ",,,,"""There is a significant crisis of reproducibility""; ""There is a slight crisis of reproducibility""; ""There is no crisis of reproducibility""; ""I don't know""",,,
+RepEstimate,number,RepEstimate_1,Estimate of research reproducibility in field,,0,100,,,,
+,,,,,,,,,,
+,,,"Question Stem for self_rep_x: ""Which, if any, of the following have you done?""",,,,,,,
+self_rep_own,factor,self_rep_1,Tried and failed to reproduce one of your own experients,,,,,,No; Yes; I can't remember,
+self_rep_other,factor,self_rep_2,Tried and failed to reproduce someone else's experiment,,,,,,No; Yes; I can't remember,
+self_rep_pubOtherSuccess,factor,self_rep_3,Published a successful attempt to reproduce someone else's work,,,,,,No; Yes; I can't remember,
+self_rep_pubOtherFail,factor,self_rep_4,Published a failed attempt to reproduce someone else's work,,,,,,No; Yes; I can't remember,
+self_rep_noPubSuccess,factor,self_rep_5,Tried and failed to publish a successful reproduction,,,,,,No; Yes; I can't remember,
+self_rep_noPubFail,factor,self_rep_6,Tried and failed to publish an unsuccessful reproduction,,,,,,No; Yes; I can't remember,
+,,,,,,,,,,
+,,,"Question Stem for LearnedFrom_x: ""Where did you learn about open science practices?""",,,,,,,
+LearnedFrom_other,number,LearnedFrom_9,Other,,,1,1 = endorsement,,,LearnedFrom
+LearnedFrom_text,string,LearnedFrom_9_TEXT,Other: Text,,,,,,,LearnedFrom
+LearnedFrom_undergrad,number,LearnedFrom_10,Undergraduate courses,,,1,1 = endorsement,,,LearnedFrom
+LearnedFrom_myUniWorkshops,number,LearnedFrom_11,Workshops/seminars offered by my university,,,1,1 = endorsement,,,LearnedFrom
+LearnedFrom_extWorkshops,number,LearnedFrom_12,External (non-university) workshops/conferences,,,1,1 = endorsement,,,LearnedFrom
+LearnedFrom_internet,number,LearnedFrom_13,Internet resources (including social media),,,1,1 = endorsement,,,LearnedFrom
+LearnedFrom_super,number,LearnedFrom_14,From my thesis supervisor(s),,,,,,,LearnedFrom
+LearnedFrom_postgrad,number,LearnedFrom_15,Postgraduate courses,,,1,1 = endorsement,,,LearnedFrom
+LearnedFrom_otherUniWorkshops,number,LearnedFrom_16,Workshops/seminars offered by another university,,,1,1 = endorsement,,,LearnedFrom
+LearnedFrom_colleagues,number,LearnedFrom_17,From my colleagues,,,1,1 = endorsement,,,LearnedFrom
+,,,,,,,,,,
+LearnedSpec_text,string,LearnedSpec,"If you remember the details of an informative seminar/workshop etc., feel free to share below (for example, who presented and/or where was this offered?)?",,,,,,,
+,,,,,,,,,,
+,,,"Question Stem for Teaching_x: ""Are you sharing your knowledge about open science practices with others in your institution?""",,,,,,,
+Teaching_no,number,Teaching_1,No,,,1,1 = endorsement,,,Teaching
+Teaching_informal,number,Teaching_2,"Yes, I share my knowledge with my colleagues informally",,,1,1 = endorsement,,,Teaching
+Teaching_seminars,number,Teaching_3,"Yes, I share my knowledge with my colleagues by offering seminars and/or giving talks",,,1,1 = endorsement,,,Teaching
+Teaching_ownStudents,number,Teaching_4,"Yes, I share my knowledge with my own research students",,,1,1 = endorsement,,,Teaching
+Teaching_postgradUnits,number,Teaching_5,"Yes, I teach open science practices in postgraduate units",,,1,1 = endorsement,,,Teaching
+Teaching_other,number,Teaching_6,Other,,,1,1 = endorsement,,,Teaching
+Teaching_text,string,Teaching_6_TEXT,Other: Text,,,,,,,Teaching
+Teaching_fellowStudents,number,Teaching_7,"Yes, I share my knowledge with my fellow research students",,,1,1 = endorsement,,,Teaching
+Teaching_undergradUnits,number,Teaching_8,"Yes, I teach open science practices in my undergraduate units",,,1,1 = endorsement,,,Teaching
+,,,,,,,,,,
+FORcode_2_num,factor,FORcode_1,Two-digit Field of Research code (FOR) number that best describes your main research area,,,,,,too many to list; see https://www.arc.gov.au/sites/default/files/minisite/static/10419/ERA2015/app-3_appendix-2.html,
+FORcode_2_label,string,FORcode_1,Two-digit Field of Research code (FOR) label that best describes your main research area,,,,,,too many to list; see https://www.arc.gov.au/sites/default/files/minisite/static/10419/ERA2015/app-3_appendix-2.html,
+FORcode_4_num,factor,FORcode_2,Four-digit Field of Research code (FOR) number that best describes your main research area,,,,,,too many to list; see https://www.arc.gov.au/sites/default/files/minisite/static/10419/ERA2015/app-3_appendix-2.html,
+FORcode_4_label,string,FORcode_2,Four-digit Field of Research code (FOR) label that best describes your main research area,,,,,,too many to list; see https://www.arc.gov.au/sites/default/files/minisite/static/10419/ERA2015/app-3_appendix-2.html,
+Discipline,factor,FORcode_2,Discipline groupings (based on recoded two-digit FOR codes),,,,,,"Business & Law; Arts, Social Sciences, & Humanities; Physical Sciences; Math, Chemical, Environmental, & Biological Sciences; Tech & Computer Sciences; Engineering; Medical & Health Sciences; Psychological & Cognitive Sciences; Other; Not Specified",
+,,,,,,,,,,
+AcademicLevel,factor,AcLevel,What is your career level/type? ,,,,,,Professor; Associate Professor; Senior Lecturer; Lecturer; Postdoc; PhD Student; Masters Student; Research Assistant; Other; Senior Research Fellow; Research Fellow,
+,,,,,,,,,,
+Funded,factor,funded,"In the last five years, have you conducted publicly-funded research?",,,,,,"""No""; ""Yes""",
+FundKnow,factor,FunKnow,Aware of government requirements for open data?,,,,,,"""No""; ""Yes""",
