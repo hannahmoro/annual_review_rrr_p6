@@ -20,4 +20,4 @@ kossmeier %>%
     estimate_type = "median N",
     estimate = median_N) %>%
   select(source, research_area, journal, year, estimate_type, estimate) %>%
-  write_csv("kossmeier_extracted_npact_data.csv")
+  write_csv("./kossmeier_extracted_npact_data.csv")

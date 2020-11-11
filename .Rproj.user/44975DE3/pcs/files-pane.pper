@@ -1,6 +1,10 @@
 {
-    "path" : "C:/Users/hmosh/Desktop/project_6",
+    "path" : "C:/Users/hmosh/Desktop/project_6/annual_review_rrr_p6",
     "sortOrder" : [
+        {
+            "ascending" : false,
+            "columnIndex" : 4
+        },
         {
             "ascending" : true,
             "columnIndex" : 2
