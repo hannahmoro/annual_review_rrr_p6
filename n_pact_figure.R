@@ -29,6 +29,7 @@ ggplot(aes(x = as.numeric(year), y = estimate)) +
   geom_point(aes(color = journal)) +
   geom_line(aes(color = journal, group = journal)) +
   labs(x = "Year", y = "N-Pact Factor (Median N)", color = "Journal") +
+  theme(axis.text.x = element_text(angle = -45, vjust = 0.5, hjust=1)) +
   ggsave("n_pact_over_time_line.png", scale = 1.2)
 
 n_pact %>%
@@ -56,7 +57,7 @@ n_pact %>%
 n_pact %>%
   ggplot(aes(x = as.numeric(year), y = as.numeric(estimate))) +
   geom_point(aes(color = journal)) +
-  geom_smooth(aes(color = journal, group = journal), se = FALSE, method = "lm") +
+  #geom_smooth(aes(color = journal, group = journal), se = FALSE, method = "lm") +
   geom_smooth() +
   labs(x = "Year", y = "N-Pact Factor (Median N)", color = "Journal") +
   ggsave("n_pact_over_time_total_avg_smooth.png", scale = 1.2)
