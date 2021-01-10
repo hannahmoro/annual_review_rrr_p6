@@ -31,6 +31,7 @@ beaudry <- read_csv("./data_processed_osf.csv") %>%
       code_exp == "Unaware" ~ "no",
       code_exp == "Regular Use" ~ "yes",
       code_exp == "Some Use" ~ "yes")) %>%
+  filter(discipline == "Psyc & Cog Sciences") %>%
   glimpse()
 
 
