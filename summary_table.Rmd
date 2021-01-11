@@ -1,0 +1,99 @@
+---
+title: "Summary of estimates of QRP behaviors among psychologists"
+author: "Hannah Moshontz"
+date: "1/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Setup
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(gsheet)
+library(lubridate)
+library(kableExtra)
+library(psych)
+```
+
+Import and glimpse
+```{r}
+behavior_estimates <- gsheet::gsheet2tbl("https://docs.google.com/spreadsheets/d/1fY6gPYEY3283W3RPT1u5DmMwuAc-mFZoDdfUb4vcvEI/edit#gid=1789844879") %>% 
+  slice(-1) %>% 
+  clean_names("snake") %>% 
+  mutate(across(everything(), ~str_replace(.x, "^na$", ""))) %>% #replace "na" with null
+    mutate(across(everything(), ~str_replace(.x, "^NA$", ""))) %>% #replace "NA" with null
+    mutate(across(everything(), ~str_replace(.x, "^unknown$", ""))) %>% #replace "unknown" with null
+  mutate(across(contains("date"), mdy)) %>% 
+  glimpse()
+```
+
+### qrp table
+
+basic table
+```{r}
+qrp_summary <- behavior_estimates %>% 
+  filter(type_os_qrp == "qrp",
+         type_sr_audit == "sr") %>% 
+  select(-general_qrp) %>% 
+  select(first_author,
+         effective_date,
+         n,
+         psych_area,
+         target_population,
+         subgroup,
+         important_notes,
+         estimate_type,
+         any_qrp:falsified) %>% 
+  arrange(effective_date) %>% 
+  mutate(effective_date = year(effective_date)) 
+```
+
+calculating simple descriptives
+```{r}
+qrp_summary_descriptives <- qrp_summary %>% 
+  select(any_qrp:falsified) %>% 
+  describe(na.rm = TRUE) %>% 
+  select(min, median, max) %>% 
+  t() %>% 
+  as_tibble() %>% 
+  mutate(across(everything(), ~round(.x, 2)))
+
+names(qrp_summary_descriptives) <- str_remove(names(qrp_summary_descriptives), "\\*")
+
+qrp_summary_descriptives <- qrp_summary_descriptives %>% 
+  mutate(first_author = c("min", "median", "max")) %>%
+  mutate(across(everything(), as.character))
+```
+
+calculating weighted averages
+```{r}
+weighted_mean <- qrp_summary %>% 
+  select(n, any_qrp:falsified) %>% 
+  mutate(across(everything(), as.numeric)) %>% 
+  summarize(across(-n,~weighted.mean(.x, n, na.rm = TRUE))) %>% 
+  mutate(across(everything(), ~round(.x, 2))) %>% 
+  mutate(first_author = "weighted mean") %>%  
+  mutate(across(everything(), as.character))
+```
+
+exporting complete table
+```{r}
+qrp_summary <- bind_rows(qrp_summary_descriptives, weighted_mean) %>%
+  bind_rows(qrp_summary) %>% 
+  select(first_author:estimate_type, everything()) %>%
+  arrange(effective_date)
+
+qrp_summary %>% 
+  kable() %>% 
+  kable_styling()
+
+write_csv(qrp_summary, "qrp_estimates.csv")
+```
+
+
+
