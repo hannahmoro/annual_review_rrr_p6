@@ -6,7 +6,7 @@ library(janitor)
 n_pact <- read_csv("n_pact_data.csv") %>%
   clean_names("snake") %>%
   filter(estimate_type == "median N") %>%
-  filter(!is.na(estimate)) %>% #one estimate from Kossneier was 1000 from 1982 (huge outlier... removed for now....)
+  filter(!is.na(estimate)) %>% #one estimate from Kossmeier was 1000 from 1982 (huge outlier... removed for now....)
   arrange(year)
 
 

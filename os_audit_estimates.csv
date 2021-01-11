@@ -1,0 +1,9 @@
+first_author,effective_date,n,psych_area,type_sr_audit,target_population,subgroup,important_notes,estimate_type,posted_data,posted_materials_or_code,preregistered
+Vanpaemel,2013,394,general,audit,psychology research,whole sample used,estimate is of data sharing *on request*,NA,0.38,NA,NA
+Hardwicke,2017,250,general,audit,psychology research,whole sample used,NA,NA,0.02,0.14,0.03
+Obels,2018,62,general,audit,registered reports in psychology,whole sample used,NA,NA,0.65,0.6,NA
+Vassar,2018,394,clinical,audit,addiction research,whole sample used,NA,NA,0,NA,NA
+min,NA,NA,NA,NA,NA,NA,NA,NA,0,0.14,0.03
+median,NA,NA,NA,NA,NA,NA,NA,NA,0.2,0.37,0.03
+max,NA,NA,NA,NA,NA,NA,NA,NA,0.65,0.6,0.03
+weighted mean,NA,NA,NA,NA,NA,NA,NA,NA,0.18,0.23,0.03

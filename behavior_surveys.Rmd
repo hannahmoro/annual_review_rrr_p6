@@ -58,7 +58,7 @@ behavior_survey_codes %>%
 behavior_survey_codes %>% 
   filter(relevant == "yes") %>% 
   filter(relevant_reason != "NA") %>% 
-  select(relevant_reason) %>% 
+  select(first_author, relevant_reason) %>% 
   kable() %>% 
   kable_styling()
 ```
@@ -68,7 +68,7 @@ behavior_survey_codes %>%
 behavior_survey_codes %>% 
   filter(relevant == "maybe") %>% 
   filter(relevant_reason != "NA") %>% 
-  select(relevant_reason) %>% 
+  select(first_author, relevant_reason) %>% 
   kable() %>% 
   kable_styling()
 ```
@@ -78,7 +78,7 @@ behavior_survey_codes %>%
 behavior_survey_codes %>% 
   filter(relevant == "no") %>% 
   filter(relevant_reason != "NA") %>% 
-  select(relevant_reason) %>% 
+  select(first_author, relevant_reason) %>% 
   kable() %>% 
   kable_styling()
 ```

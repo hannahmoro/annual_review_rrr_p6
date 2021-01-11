@@ -1,0 +1,12 @@
+first_author,effective_date,n,psych_area,type_sr_audit,target_population,subgroup,important_notes,estimate_type,posted_data,posted_materials_or_code,preregistered
+cwts,2016,59,general,sr,psychology researchers,psychologists and neuroscientists regarding their last research project,NA,binary specific project,0.55,NA,NA
+Washburn,2017,1035,social and personality,sr,social and personality psychology researchers,whole sample used,note that this sample is the same as Motyl,binary all time,0.56,NA,0.27
+Houtkoop,2017,780,general,sr,psychology researchers,whole sample used,NA,binary all time,0.4,NA,NA
+Christensen,2017,86,general,sr,psychology researchers,psychologists,NA,binary all time,0.6,0.44,0.51
+Beaudry,2019,45,general,sr,Australian psychology researchers,psychologists,NA,binary all time,0.27,0.2,0.36
+Makel,2019,1488,education,sr,education researchers,whole sample used,NA,binary all time,0.46,0.59,0.54
+van den Akker,2019,144,social and personality,sr,emotion researchers,whole sample used,NA,binary all time,NA,NA,0.57
+min,NA,NA,NA,NA,NA,NA,NA,NA,0.27,0.2,0.27
+median,NA,NA,NA,NA,NA,NA,NA,NA,0.5,0.44,0.51
+max,NA,NA,NA,NA,NA,NA,NA,NA,0.6,0.59,0.57
+weighted mean,NA,NA,NA,NA,NA,NA,NA,NA,0.48,0.57,0.44

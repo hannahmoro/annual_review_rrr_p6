@@ -1,5 +1,5 @@
 ---
-title: "Summary of estimates of QRP behaviors among psychologists"
+title: "Summary of estimates of QRP/OS behaviors among psychologists"
 author: "Hannah Moshontz"
 date: "1/10/2021"
 output: html_document
@@ -60,8 +60,7 @@ qrp_summary_descriptives <- qrp_summary %>%
   describe(na.rm = TRUE) %>% 
   select(min, median, max) %>% 
   t() %>% 
-  as_tibble() %>% 
-  mutate(across(everything(), ~round(.x, 2)))
+  as_tibble()
 
 names(qrp_summary_descriptives) <- str_remove(names(qrp_summary_descriptives), "\\*")
 
@@ -76,7 +75,6 @@ weighted_mean <- qrp_summary %>%
   select(n, any_qrp:falsified) %>% 
   mutate(across(everything(), as.numeric)) %>% 
   summarize(across(-n,~weighted.mean(.x, n, na.rm = TRUE))) %>% 
-  mutate(across(everything(), ~round(.x, 2))) %>% 
   mutate(first_author = "weighted mean") %>%  
   mutate(across(everything(), as.character))
 ```
@@ -93,7 +91,145 @@ qrp_summary %>%
   kable_styling()
 
 write_csv(qrp_summary, "qrp_estimates.csv")
+
+read_csv("qrp_estimates.csv") %>% #reimporting to correctly parse numeric
+  mutate(across(where(is.numeric), ~round(.x, 2))) %>% #round
+  write_csv("qrp_estimates.csv") #rewrite csv
+
 ```
 
+
+### os self-report table
+
+basic table
+```{r}
+os_summary <- behavior_estimates %>% 
+  filter(type_os_qrp == "os") %>% 
+  filter(type_sr_audit == "sr") %>% 
+  select(first_author,
+         effective_date,
+         n,
+         psych_area,
+         type_sr_audit,
+         target_population,
+         subgroup,
+         important_notes,
+         estimate_type,
+         posted_data:preregistered) %>% 
+  arrange(effective_date) %>% 
+  mutate(effective_date = year(effective_date)) 
+```
+
+calculating simple descriptives
+```{r}
+os_summary_descriptives <- os_summary %>% 
+  select(posted_data:preregistered) %>% 
+  describe(na.rm = TRUE) %>% 
+  select(min, median, max) %>% 
+  t() %>% 
+  as_tibble()
+
+names(os_summary_descriptives) <- str_remove(names(os_summary_descriptives), "\\*")
+
+os_summary_descriptives <- os_summary_descriptives %>% 
+  mutate(first_author = c("min", "median", "max")) %>%
+  mutate(across(everything(), as.character))
+```
+
+calculating weighted averages
+```{r}
+os_weighted_mean <- os_summary %>% 
+  select(n, posted_data:preregistered) %>% 
+  mutate(across(everything(), as.numeric)) %>% 
+  summarize(across(-n,~weighted.mean(.x, n, na.rm = TRUE))) %>% 
+  mutate(first_author = "weighted mean") %>%  
+  mutate(across(everything(), as.character))
+```
+
+exporting complete table
+```{r}
+os_summary <- bind_rows(os_summary_descriptives, os_weighted_mean) %>%
+  bind_rows(os_summary) %>% 
+  select(first_author:estimate_type, everything()) %>%
+  arrange(effective_date)
+
+os_summary %>% 
+  kable() %>% 
+  kable_styling()
+
+write_csv(os_summary, "os_estimates.csv")
+
+read_csv("os_estimates.csv") %>% #reimporting to correctly parse numeric
+  mutate(across(where(is.numeric), ~round(.x, 2))) %>% #round
+  write_csv("os_estimates.csv") #rewrite csv
+```
+
+
+### os self-report table
+
+basic table
+```{r}
+os_audit_summary <- behavior_estimates %>% 
+  filter(type_os_qrp == "os") %>% 
+  filter(type_sr_audit == "audit") %>% 
+  select(first_author,
+         effective_date,
+         n,
+         psych_area,
+         type_sr_audit,
+         target_population,
+         subgroup,
+         important_notes,
+         estimate_type,
+         posted_data:preregistered) %>% 
+  arrange(effective_date) %>% 
+  mutate(effective_date = year(effective_date)) 
+```
+
+calculating simple descriptives
+```{r}
+os_audit_summary_descriptives <- os_audit_summary %>% 
+  select(posted_data:preregistered) %>% 
+  describe(na.rm = TRUE) %>% 
+  select(min, median, max) %>% 
+  t() %>% 
+  as_tibble()
+
+names(os_audit_summary_descriptives) <- str_remove(names(os_audit_summary_descriptives), "\\*")
+
+os_audit_summary_descriptives <- os_audit_summary_descriptives %>% 
+  mutate(first_author = c("min", "median", "max")) %>%
+  mutate(across(everything(), as.character))
+```
+
+calculating weighted averages
+```{r}
+os_audit_weighted_mean <- os_audit_summary %>% 
+  select(n, posted_data:preregistered) %>% 
+  mutate(across(everything(), as.numeric)) %>% 
+  summarize(across(-n,~weighted.mean(.x, n, na.rm = TRUE))) %>% 
+  mutate(first_author = "weighted mean") %>%  
+  mutate(across(everything(), as.character))
+```
+
+exporting complete table
+```{r}
+os_audit_summary <- bind_rows(
+  os_audit_summary_descriptives, 
+  os_audit_weighted_mean) %>%
+  bind_rows(os_audit_summary) %>% 
+  select(first_author:estimate_type, everything()) %>%
+  arrange(effective_date)
+
+os_audit_summary %>% 
+  kable() %>% 
+  kable_styling()
+
+write_csv(os_audit_summary, "os_audit_estimates.csv")
+
+read_csv("os_audit_estimates.csv") %>% #reimporting to correctly parse numeric
+  mutate(across(where(is.numeric), ~round(.x, 2))) %>% #round
+  write_csv("os_audit_estimates.csv") #rewrite csv
+```
 
 
