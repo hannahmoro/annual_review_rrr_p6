@@ -11,6 +11,8 @@ editor_options:
   chunk_output_type: console
 ---
 
+This markdown provides an overview of articles evaluted for inclusion in the RRR Project 6 synthesis of psychology researcher behavior change.
+
 ## Set up
 ```{r, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(warning = FALSE)
@@ -31,19 +33,12 @@ behavior_survey_codes <- read_csv("./behavior_survey_codes.csv") %>%
   glimpse()
 ```
 
-## Describe data 
+## Describe the initial evaluation
 
 ### Article relevance to quantitative summary
 ```{r}
 behavior_survey_codes %>%
   tabyl(relevant)
-```
-
-### Publication years: yes articles
-```{r}
-behavior_survey_codes %>% 
-  filter(relevant == "yes") %>% 
-  tabyl(publication_year, show_na = TRUE)
 ```
 
 ### Publication Years: yes and maybe articles
@@ -82,4 +77,105 @@ behavior_survey_codes %>%
   kable() %>% 
   kable_styling()
 ```
+
+## Describe the final evaluation
+
+```{r}
+behavior_estimates <- gsheet::gsheet2tbl("https://docs.google.com/spreadsheets/d/1fY6gPYEY3283W3RPT1u5DmMwuAc-mFZoDdfUb4vcvEI/edit#gid=1789844879") %>% 
+  slice(-1) %>% 
+  clean_names("snake") %>% 
+  mutate(across(everything(), ~str_replace(.x, "^na$", ""))) %>% #replace "na" with null
+    mutate(across(everything(), ~str_replace(.x, "^NA$", ""))) %>% #replace "NA" with null
+    mutate(across(everything(), ~str_replace(.x, "^unknown$", ""))) %>% #replace "unknown" with null
+  mutate(across(contains("date"), mdy)) %>% 
+  glimpse()
+```
+
+There are `r nrow(behavior_estimates)` samples from `r length(unique(behavior_estimates$first_author))` publications.
+
+### Target populations and samples
+
+```{r}
+behavior_estimates %>% 
+  select(target_population, sample) %>% 
+  distinct() %>% 
+  kable() %>% 
+  kable_styling()
+```
+
+### Effective date
+
+Given survey frame & question wording, the most current actual effective date (yyyy/mm/dd) for use in plots, etc. If a day wasn't specified, the last day of the specified month was used. If no end date of the survey was reported, the submission date of the article was used, or the publication date if the submission date was not listed.
+
+```{r}
+behavior_estimates %>% 
+  mutate(effective_date = year(effective_date)) %>% 
+  tabyl(effective_date)
+```
+
+### Inferences made in extracting estimates
+
+```{r}
+behavior_estimates %>% 
+  filter(inferences_made != "no") %>% 
+  select(first_author, inferences_made) %>% 
+  kable() %>% 
+  kable_styling()
+```
+
+
+### Whether the estimates are relevant to undermining replicability (QRP) or supporting it (OS)
+
+```{r}
+behavior_estimates %>% 
+  tabyl(type_os_qrp)
+```
+
+### Whether the estimates are from self-report or from audits
+
+```{r}
+behavior_estimates %>% 
+  tabyl(type_sr_audit)
+```
+
+### QRP: question stems and response options
+
+```{r}
+behavior_estimates %>% 
+  filter(type_os_qrp == "qrp") %>% 
+  select(question_stem, response_options) %>% 
+  distinct() %>% 
+  kable() %>% 
+  kable_styling()
+```
+
+#### QRP extracted estimate type
+
+```{r}
+behavior_estimates %>% 
+  filter(type_os_qrp == "qrp") %>% 
+  tabyl(estimate_type)
+```
+
+
+### OS: question stems and response options
+
+```{r}
+behavior_estimates %>% 
+  filter(type_os_qrp == "os") %>% 
+  select(question_stem, response_options) %>% 
+  distinct() %>% 
+  kable() %>% 
+  kable_styling()
+```
+
+#### OS extracted estimate type
+
+```{r}
+behavior_estimates %>% 
+  filter(type_os_qrp == "os") %>% 
+  tabyl(estimate_type)
+```
+
+
 
