@@ -286,13 +286,38 @@ div.tocify {
 </div>
 
 
+<p>This markdown provides an overview of articles evaluted for inclusion in the RRR Project 6 synthesis of psychology researcher behavior change.</p>
+<p>The literature evaluated here were identified by overlapping searches:</p>
+<ul>
+<li>Forward search on John et al use of QRP in Google Scholar</li>
+<li>Replicated the search strategy in Stricker &amp; Gunther (2019)</li>
+<li>Google Scholar forward search on Broome et al. (2005)</li>
+<li>PsychInfo title and abstract search for “questionable research practices” AND psycholog*</li>
+<li>PsychInfo title search for “open data” AND psycholog* open data</li>
+<li>PsychInfo title search for “open materials” AND psycholog* open materials</li>
+<li>PsychInfo title search for “open code” AND psycholog* open code</li>
+<li>Zotero folder from OSF on surveys of open science behaviors</li>
+<li>Backwards searches on included articles and meta-science papers</li>
+<li>Twitter post asking about published and unpublished behavior surveys on ether qrp or os behaviors</li>
+</ul>
+<p>Studies were evaluated for inclusion if the title and abstract suggested that the survey may have:</p>
+<ul>
+<li>asked psychologists about their own past use of QRP or open science behaviors</li>
+</ul>
+<p>Studies were included if they:</p>
+<ul>
+<li>estimated or shared data that allowed for the estimate of rates among psychologists using original data</li>
+<li>asked about at least one of the 10 QRPs evaluated by John et al. or about sharing data, code, or materials</li>
+</ul>
+<p>Studies were coded by Hannah Moshontz, Laura Scherer, or Joe Hilgard. The values for self-report estimates, effective date, and any value that required inference were confirmed in a group meeting.</p>
 <div id="set-up" class="section level2">
 <h2>Set up</h2>
 <pre class="r"><code>knitr::opts_chunk$set(warning = FALSE)
 library(tidyverse)
 library(janitor)
 library(gsheet)
-library(kableExtra)</code></pre>
+library(kableExtra)
+library(lubridate)</code></pre>
 </div>
 <div id="import-codes-from-google-sheet" class="section level2">
 <h2>Import codes from google sheet</h2>
@@ -303,15 +328,15 @@ behavior_survey_codes &lt;- read_csv(&quot;./behavior_survey_codes.csv&quot;) %&
   clean_names(&quot;snake&quot;) %&gt;%
   slice(-1) %&gt;%
   glimpse()</code></pre>
-<pre><code>## Rows: 81
+<pre><code>## Rows: 80
 ## Columns: 27
 ## $ coder                   &lt;chr&gt; &quot;laura&quot;, &quot;laura&quot;, &quot;laura&quot;, &quot;hannah&quot;, &quot;joe&quot;,...
 ## $ url                     &lt;chr&gt; NA, &quot;http://www.davidpublisher.org/index.ph...
 ## $ first_author            &lt;chr&gt; &quot;Agnoli&quot;, &quot;Ana&quot;, &quot;Ana&quot;, &quot;Bakker&quot;, &quot;Banks&quot;, ...
 ## $ publication_year        &lt;chr&gt; &quot;2017&quot;, &quot;2015&quot;, &quot;2013&quot;, &quot;2014&quot;, &quot;2016&quot;, &quot;20...
 ## $ notes                   &lt;chr&gt; &quot;Italian sample, replication of John et al....
-## $ relevant                &lt;chr&gt; &quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;maybe&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;y...
-## $ relevant_reason         &lt;chr&gt; NA, &quot;data not reported for psychologists al...
+## $ relevant                &lt;chr&gt; &quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;yes&quot;...
+## $ relevant_reason         &lt;chr&gt; &quot;Italian sample, replication of John et al....
 ## $ qrp_1                   &lt;chr&gt; &quot;yes&quot;, NA, &quot;no&quot;, NA, NA, &quot;no&quot;, NA, NA, NA, ...
 ## $ qrp_2                   &lt;chr&gt; &quot;yes&quot;, NA, &quot;no&quot;, NA, NA, &quot;no&quot;, NA, NA, NA, ...
 ## $ qrp_3                   &lt;chr&gt; &quot;yes&quot;, NA, &quot;no&quot;, NA, NA, &quot;no&quot;, NA, NA, NA, ...
@@ -333,50 +358,36 @@ behavior_survey_codes &lt;- read_csv(&quot;./behavior_survey_codes.csv&quot;) %&
 ## $ os_absolute_time_range  &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
 ## $ os_relative_time_stem   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...</code></pre>
 </div>
-<div id="describe-data" class="section level2">
-<h2>Describe data</h2>
+<div id="describe-the-initial-evaluation" class="section level2">
+<h2>Describe the initial evaluation</h2>
 <div id="article-relevance-to-quantitative-summary" class="section level3">
 <h3>Article relevance to quantitative summary</h3>
 <pre class="r"><code>behavior_survey_codes %&gt;%
   tabyl(relevant)</code></pre>
-<pre><code>##  relevant  n   percent
-##     maybe 13 0.1604938
-##        no 49 0.6049383
-##       yes 19 0.2345679</code></pre>
-</div>
-<div id="publication-years-yes-articles" class="section level3">
-<h3>Publication years: yes articles</h3>
-<pre class="r"><code>behavior_survey_codes %&gt;% 
-  filter(relevant == &quot;yes&quot;) %&gt;% 
-  tabyl(publication_year, show_na = TRUE)</code></pre>
-<pre><code>##  publication_year n    percent
-##              2012 1 0.05263158
-##              2016 3 0.15789474
-##              2017 4 0.21052632
-##              2018 4 0.21052632
-##              2019 5 0.26315789
-##              2020 2 0.10526316</code></pre>
+<pre><code>##  relevant  n percent
+##     maybe 13  0.1625
+##        no 49  0.6125
+##       yes 18  0.2250</code></pre>
 </div>
 <div id="publication-years-yes-and-maybe-articles" class="section level3">
 <h3>Publication Years: yes and maybe articles</h3>
 <pre class="r"><code>behavior_survey_codes %&gt;% 
   filter(relevant != &quot;no&quot;) %&gt;% 
   tabyl(publication_year, show_na = TRUE)</code></pre>
-<pre><code>##  publication_year n percent
-##              2012 1 0.03125
-##              2014 1 0.03125
-##              2015 2 0.06250
-##              2016 5 0.15625
-##              2017 6 0.18750
-##              2018 4 0.12500
-##              2019 7 0.21875
-##              2020 6 0.18750</code></pre>
+<pre><code>##  publication_year n    percent
+##              2009 1 0.03225806
+##              2012 1 0.03225806
+##              2015 2 0.06451613
+##              2016 5 0.16129032
+##              2017 6 0.19354839
+##              2018 4 0.12903226
+##              2019 6 0.19354839
+##              2020 6 0.19354839</code></pre>
 </div>
 <div id="notes-about-relevance-yes-articles" class="section level3">
 <h3>Notes about relevance: yes articles</h3>
 <pre class="r"><code>behavior_survey_codes %&gt;% 
   filter(relevant == &quot;yes&quot;) %&gt;% 
-  filter(relevant_reason != &quot;NA&quot;) %&gt;% 
   select(first_author, relevant_reason) %&gt;% 
   kable() %&gt;% 
   kable_styling()</code></pre>
@@ -394,10 +405,26 @@ relevant_reason
 <tbody>
 <tr>
 <td style="text-align:left;">
+Agnoli
+</td>
+<td style="text-align:left;">
+Italian sample, replication of John et al. 2012
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Banks
+</td>
+<td style="text-align:left;">
+asked about other QRPs beyond John (e.g., selective inclusion of control variables)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 Beaudry
 </td>
 <td style="text-align:left;">
-data are here and Hannah has some additional summary information (they asked that I not share it widely) <a href="https://osf.io/vpwf7/" class="uri">https://osf.io/vpwf7/</a>
+yes, author provided data and information
 </td>
 </tr>
 <tr>
@@ -410,10 +437,34 @@ asks authors about HARKING
 </tr>
 <tr>
 <td style="text-align:left;">
+Christensen
+</td>
+<td style="text-align:left;">
+yes, reports information on psychologists in figures
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 CWTS
 </td>
 <td style="text-align:left;">
 reports on the existence and use of data journals (in psychology: Journal of Open Psychology Data); reports on behaviors. Using raw data, I calcualted that 55% of the 59 psychologists and neuroscientists included did not share data for their last research project. (See code in tab below)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fiedler
+</td>
+<td style="text-align:left;">
+German psychologists, similar to John et al., 2012; question text rephrased to be less “equivocal” and more specifically intentional
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fox
+</td>
+<td style="text-align:left;">
+focused on use of any QRP in last 12 months
 </td>
 </tr>
 <tr>
@@ -445,7 +496,7 @@ specifically looking at psychologists’ achievement goals and relationship to Q
 John
 </td>
 <td style="text-align:left;">
-basis of this review
+the seminal survey on QRPs
 </td>
 </tr>
 <tr>
@@ -466,10 +517,26 @@ education is close enough to psychology, IMO
 </tr>
 <tr>
 <td style="text-align:left;">
+Motyl
+</td>
+<td style="text-align:left;">
+yes, asks about both os practices and qrp
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rabelo
+</td>
+<td style="text-align:left;">
+uses questions from John et al. (2012)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 Swift
 </td>
 <td style="text-align:left;">
-Uses the Fiedler &amp; Schwarz (2016) adaptation of the John et al. QRPs. Asks clinical and counseling PhD faculty and students.
+Uses the Fiedler &amp; Schwarz (2016) adaptation of the John et al. QRPs
 </td>
 </tr>
 <tr>
@@ -477,7 +544,7 @@ Uses the Fiedler &amp; Schwarz (2016) adaptation of the John et al. QRPs. Asks 
 Wolff
 </td>
 <td style="text-align:left;">
-Psychology, although just one research area
+more narrow than just psychology
 </td>
 </tr>
 </tbody>
@@ -487,7 +554,6 @@ Psychology, although just one research area
 <h3>Notes about relevance: maybe articles</h3>
 <pre class="r"><code>behavior_survey_codes %&gt;% 
   filter(relevant == &quot;maybe&quot;) %&gt;% 
-  filter(relevant_reason != &quot;NA&quot;) %&gt;% 
   select(first_author, relevant_reason) %&gt;% 
   kable() %&gt;% 
   kable_styling()</code></pre>
@@ -505,18 +571,18 @@ relevant_reason
 <tbody>
 <tr>
 <td style="text-align:left;">
-Bakker
+Crede
 </td>
 <td style="text-align:left;">
-authors looked at prevalence of removal of outliers in journal articles (related to qrp_7)
+evaluates QRPs evidenced in journal articles (CFA only), but no overlap with John questions
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Crede
+Fanelli
 </td>
 <td style="text-align:left;">
-evaluates QRPs evidenced in journal articles (CFA only)
+a synthesis of surveys, not original data
 </td>
 </tr>
 <tr>
@@ -524,7 +590,7 @@ evaluates QRPs evidenced in journal articles (CFA only)
 Fong
 </td>
 <td style="text-align:left;">
-Reports social sciences and psychology in particular in figures and tables; yet this might be a little different from our main QRP/OS focus. Still interesting.
+focused on authorship issues. reports social sciences and psychology in particular in figures and tables.
 </td>
 </tr>
 <tr>
@@ -532,7 +598,7 @@ Reports social sciences and psychology in particular in figures and tables; yet 
 Giofrè
 </td>
 <td style="text-align:left;">
-evaluates behaviors (over time) that support replicability
+evaluates the effects of journal os policy on reporting (e.g., confidence intervals)
 </td>
 </tr>
 <tr>
@@ -549,6 +615,14 @@ Hardwicke
 </td>
 <td style="text-align:left;">
 assess behaviors that support replicability as evident from journal articles, but only 5 psychology articles included in the sample
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hardwicke
+</td>
+<td style="text-align:left;">
+Used subsample of Kidwell et al.: 25 papers published in Psych Science with data badges between 2014-2015; Notes from Laura: this paper is about computational reproducibility among papers with shared data and corresponding badge
 </td>
 </tr>
 <tr>
@@ -580,7 +654,7 @@ test computational reproducibility and open data among registered reports
 Stricker
 </td>
 <td style="text-align:left;">
-Relevant content from this article (summarized by HM): - they synthesize estimates of misconduct in psychology - great summary of different ways to estimate misconduct - “Survey studies on the prevalence of scientific misconduct have been criticized for providing varying estimates due to differences in item wording, survey distribution method, social desirability and other factors (Fanelli, 2009; Fiedler &amp; Schwarz, 2016).”
+synthesizes estimates of misconduct in psychology
 </td>
 </tr>
 <tr>
@@ -606,7 +680,6 @@ evaluates data sharing in addiction research as evident in journal articles
 <h3>Notes about relevance: no articles</h3>
 <pre class="r"><code>behavior_survey_codes %&gt;% 
   filter(relevant == &quot;no&quot;) %&gt;% 
-  filter(relevant_reason != &quot;NA&quot;) %&gt;% 
   select(first_author, relevant_reason) %&gt;% 
   kable() %&gt;% 
   kable_styling()</code></pre>
@@ -632,10 +705,26 @@ data not reported for psychologists alone
 </tr>
 <tr>
 <td style="text-align:left;">
+Ana
+</td>
+<td style="text-align:left;">
+notes from Laura: this is not a survey of psychologists
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bakker
+</td>
+<td style="text-align:left;">
+audit of removal of outliers in journal articles and consequences (related to qrp_7), but does not estimate prevalence
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 Banks
 </td>
 <td style="text-align:left;">
-Not original data
+a synthesis of surveys, not original data and focused on social science
 </td>
 </tr>
 <tr>
@@ -675,7 +764,7 @@ not an empirical article
 Crain
 </td>
 <td style="text-align:left;">
-Psychology results not reported separately from biomedical results; Surveys participants on 4 virtuous behaviors using 10 items from Steneck 2004: maintaining confidentiality and data integrity; playing by the rules; avoiding favoritism; following the golden rule.
+Psychology results not reported separately from biomedical results
 </td>
 </tr>
 <tr>
@@ -683,15 +772,7 @@ Psychology results not reported separately from biomedical results; Surveys part
 Dhingra
 </td>
 <td style="text-align:left;">
-Not psychology
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Fanelli
-</td>
-<td style="text-align:left;">
-not original data
+focuses on medical researchers and not psychologists
 </td>
 </tr>
 <tr>
@@ -699,7 +780,7 @@ not original data
 Fecher
 </td>
 <td style="text-align:left;">
-does not report separately on psych
+does not report estimates for psychology researchers
 </td>
 </tr>
 <tr>
@@ -731,7 +812,23 @@ not an empirical paper
 Fraser
 </td>
 <td style="text-align:left;">
-included ecology and evoluation researchers
+subjects were ecology and evolution researchers, not psychologists
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Godecharle
+</td>
+<td style="text-align:left;">
+notes from laura: survey not limited to psych
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Haeussler
+</td>
+<td style="text-align:left;">
+Notes from Laura: this reports on bioscientists not psychologists
 </td>
 </tr>
 <tr>
@@ -763,7 +860,7 @@ non-empirical review
 Jensen
 </td>
 <td style="text-align:left;">
-Not psychology
+subjects do not include psychologists
 </td>
 </tr>
 <tr>
@@ -771,7 +868,7 @@ Not psychology
 KHADEM
 </td>
 <td style="text-align:left;">
-Not psychology
+subjects are medical students, not psychologists
 </td>
 </tr>
 <tr>
@@ -788,7 +885,7 @@ Includes questions about data sharing <em>and</em> mandates (“Data sharing is 
 Kim
 </td>
 <td style="text-align:left;">
-proposal
+a proposal, not an empirical paper
 </td>
 </tr>
 <tr>
@@ -805,6 +902,14 @@ Linek
 </td>
 <td style="text-align:left;">
 participants might have included psychologists, but data not reported in a way that is usable for our purposes
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Miller
+</td>
+<td style="text-align:left;">
+notes from Laura: in this survey of funder interference, reported interference did not map on well to QRPs listed here
 </td>
 </tr>
 <tr>
@@ -841,10 +946,26 @@ participants did not include psychologists
 </tr>
 <tr>
 <td style="text-align:left;">
+Pupovac
+</td>
+<td style="text-align:left;">
+notes from Laura: in this survey of funder interference, reported interference did not map on well to QRPs listed here
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pupovac
+</td>
+<td style="text-align:left;">
+notes from Laura: this was a survey about plagarism and not limited to psychologists
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 Rajah
 </td>
 <td style="text-align:left;">
-asks undergraduates, doesn’t report major in a way that we can estimate for psychologists only
+doesn’t report major in a way that allows us to estimate the rates for psychologists only
 </td>
 </tr>
 <tr>
@@ -868,7 +989,7 @@ focused on authorship disagreements / issues
 Smyth
 </td>
 <td style="text-align:left;">
-Not psychology
+sample is not psychologists
 </td>
 </tr>
 <tr>
@@ -900,7 +1021,15 @@ Many disciplines, psychology not reported alone
 Tijdink
 </td>
 <td style="text-align:left;">
-Not psychology
+sample is not psychologists
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tijdink
+</td>
+<td style="text-align:left;">
+notes from laura: survey not limited to psych
 </td>
 </tr>
 <tr>
@@ -908,7 +1037,7 @@ Not psychology
 Tiong
 </td>
 <td style="text-align:left;">
-Not psychology
+sample is not psychologists
 </td>
 </tr>
 <tr>
@@ -921,10 +1050,18 @@ not empirical
 </tr>
 <tr>
 <td style="text-align:left;">
+Wager
+</td>
+<td style="text-align:left;">
+notes from laura: survey not limited to psych
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 Wang
 </td>
 <td style="text-align:left;">
-Not psychology
+sample is not psychologists
 </td>
 </tr>
 <tr>
@@ -953,6 +1090,776 @@ doesn’t ask about these qrps
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div id="describe-the-final-evaluation" class="section level2">
+<h2>Describe the final evaluation</h2>
+<pre class="r"><code>behavior_estimates &lt;- gsheet::gsheet2tbl(&quot;https://docs.google.com/spreadsheets/d/1fY6gPYEY3283W3RPT1u5DmMwuAc-mFZoDdfUb4vcvEI/edit#gid=1789844879&quot;) %&gt;% 
+  slice(-1) %&gt;% 
+  clean_names(&quot;snake&quot;) %&gt;% 
+  mutate(across(everything(), ~str_replace(.x, &quot;^na$&quot;, &quot;&quot;))) %&gt;% #replace &quot;na&quot; with null
+    mutate(across(everything(), ~str_replace(.x, &quot;^NA$&quot;, &quot;&quot;))) %&gt;% #replace &quot;NA&quot; with null
+    mutate(across(everything(), ~str_replace(.x, &quot;^unknown$&quot;, &quot;&quot;))) %&gt;% #replace &quot;unknown&quot; with null
+  mutate(across(contains(&quot;date&quot;), mdy)) %&gt;% 
+  glimpse()</code></pre>
+<pre><code>## Rows: 29
+## Columns: 35
+## $ first_author                  &lt;chr&gt; &quot;Vanpaemel&quot;, &quot;cwts&quot;, &quot;Houtkoop&quot;, &quot;Was...
+## $ type_os_qrp                   &lt;chr&gt; &quot;os&quot;, &quot;os&quot;, &quot;os&quot;, &quot;os&quot;, &quot;os&quot;, &quot;os&quot;, &quot;...
+## $ publication_year              &lt;chr&gt; &quot;2015&quot;, &quot;2017&quot;, &quot;2018&quot;, &quot;2018&quot;, &quot;2019...
+## $ effective_date                &lt;date&gt; 2013-11-30, 2016-07-30, 2017-08-31, ...
+## $ original_coder                &lt;chr&gt; &quot;Hannah&quot;, &quot;Hannah&quot;, &quot;Laura&quot;, &quot;Hannah&quot;...
+## $ url                           &lt;chr&gt; &quot;https://online.ucpress.edu/collabra/...
+## $ type_sr_audit                 &lt;chr&gt; &quot;audit&quot;, &quot;sr&quot;, &quot;sr&quot;, &quot;sr&quot;, &quot;sr&quot;, &quot;sr&quot;...
+## $ psych_area                    &lt;chr&gt; &quot;general&quot;, &quot;general&quot;, &quot;general&quot;, &quot;soc...
+## $ target_population             &lt;chr&gt; &quot;psychology research&quot;, &quot;psychology re...
+## $ sample                        &lt;chr&gt; &quot;all papers with at least one p-value...
+## $ subgroup                      &lt;chr&gt; &quot;whole sample used&quot;, &quot;psychologists a...
+## $ survey_start_date             &lt;date&gt; NA, 2016-06-01, NA, NA, 2019-08-19, ...
+## $ survey_end_date               &lt;date&gt; 2013-12-31, 2016-07-01, NA, NA, 2019...
+## $ question_stem                 &lt;chr&gt; &quot;&quot;, &quot;not specified&quot;, &quot;Percentage of p...
+## $ response_options              &lt;chr&gt; &quot;&quot;, &quot;not specified&quot;, &quot;Percentage fill...
+## $ n                             &lt;chr&gt; &quot;394&quot;, &quot;59&quot;, &quot;780&quot;, &quot;1035&quot;, &quot;45&quot;, &quot;86...
+## $ estimate_type                 &lt;chr&gt; &quot;&quot;, &quot;binary specific project&quot;, &quot;binar...
+## $ inferences_made               &lt;chr&gt; &quot;no&quot;, &quot;no&quot;, &quot;yes estimated from a fig...
+## $ important_notes               &lt;chr&gt; &quot;estimate is of data sharing *on requ...
+## $ any_qrp                       &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;...
+## $ general_qrp                   &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;...
+## $ dropped_outcomes              &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;...
+## $ continued_data                &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;...
+## $ dropped_conditions            &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;...
+## $ stopped_data                  &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;...
+## $ rounded_p                     &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;...
+## $ dropped_studies               &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;...
+## $ dropped_obs                   &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;...
+## $ harked                        &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;...
+## $ generalized                   &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;...
+## $ falsified                     &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;...
+## $ posted_data                   &lt;chr&gt; &quot;0.38&quot;, &quot;0.55&quot;, &quot;0.4&quot;, &quot;0.56&quot;, &quot;0.266...
+## $ posted_materials_or_code      &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;0.2&quot;, &quot;0.44&quot;, &quot;0.589...
+## $ preregistered                 &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;0.27&quot;, &quot;0.3556&quot;, &quot;0.51&quot;,...
+## $ computational_reproducibility &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;0.58...</code></pre>
+<p>There are 29 samples from 24 publications.</p>
+<div id="target-populations-and-samples" class="section level3">
+<h3>Target populations and samples</h3>
+<pre class="r"><code>behavior_estimates %&gt;% 
+  select(first_author, effective_date, target_population, sample) %&gt;% 
+  distinct() %&gt;% 
+  kable() %&gt;% 
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+first_author
+</th>
+<th style="text-align:left;">
+effective_date
+</th>
+<th style="text-align:left;">
+target_population
+</th>
+<th style="text-align:left;">
+sample
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Vanpaemel
+</td>
+<td style="text-align:left;">
+2013-11-30
+</td>
+<td style="text-align:left;">
+psychology research
+</td>
+<td style="text-align:left;">
+all papers with at least one p-value and for which a Bayesian reanalysis seemed feasible published in 2012 in the following four APA journals: Emotion (155), Experimental and Clinical Psychopharmacology (56), Journal of Abnormal Psychology (98) and Psychology and Aging (115).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cwts
+</td>
+<td style="text-align:left;">
+2016-07-30
+</td>
+<td style="text-align:left;">
+psychology researchers
+</td>
+<td style="text-align:left;">
+not specified, high potential for selection bias
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Houtkoop
+</td>
+<td style="text-align:left;">
+2017-08-31
+</td>
+<td style="text-align:left;">
+psychology researchers
+</td>
+<td style="text-align:left;">
+authors of Web of Science articles in the English published from 2005 through 2015 with psychology as both the topic and the specific research area
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Washburn
+</td>
+<td style="text-align:left;">
+2017-04-27
+</td>
+<td style="text-align:left;">
+social and personality psychology researchers
+</td>
+<td style="text-align:left;">
+people on the mailing lists of Social and Personality Societies: SPSP, ESSP, SASP
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Beaudry
+</td>
+<td style="text-align:left;">
+2019-09-24
+</td>
+<td style="text-align:left;">
+Australian psychology researchers
+</td>
+<td style="text-align:left;">
+all research active staff and MA/PhD students at Swinburne University
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Christensen
+</td>
+<td style="text-align:left;">
+2017-12-31
+</td>
+<td style="text-align:left;">
+psychology researchers
+</td>
+<td style="text-align:left;">
+subset of a representative sample drawn from authors publishing 2014-2016 in 10 most-cited journals in psych in top 20 programs who responded and who had received their PhD by 2009
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Makel
+</td>
+<td style="text-align:left;">
+2019-10-31
+</td>
+<td style="text-align:left;">
+education researchers
+</td>
+<td style="text-align:left;">
+people who had published at least one article in an academic education research journal ranked in the top 30 2017 Scimago impact factors or published by American Educational Research Association.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+van den Akker
+</td>
+<td style="text-align:left;">
+2019-10-31
+</td>
+<td style="text-align:left;">
+emotion researchers
+</td>
+<td style="text-align:left;">
+present and past editors at Emotion, Emotion Review, and Cognition &amp; Emotion and people registered for the Tilburg Emotion Conference
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Obels
+</td>
+<td style="text-align:left;">
+2018-12-31
+</td>
+<td style="text-align:left;">
+registered reports in psychology
+</td>
+<td style="text-align:left;">
+registered reports in psychology published from 2014 to 2018
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Vassar
+</td>
+<td style="text-align:left;">
+2018-12-31
+</td>
+<td style="text-align:left;">
+addiction research
+</td>
+<td style="text-align:left;">
+RCTs published in top 15 journals between January 1, 2013 and December 31, 2018
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hardwicke
+</td>
+<td style="text-align:left;">
+2017-12-31
+</td>
+<td style="text-align:left;">
+psychology research
+</td>
+<td style="text-align:left;">
+random sample articles published between 2014 and 2017 listed in Scopus as document type “article” or “review”, in a journal coded as related to psychology
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+John
+</td>
+<td style="text-align:left;">
+2011-05-20
+</td>
+<td style="text-align:left;">
+American psychology researchers
+</td>
+<td style="text-align:left;">
+faculty in all psychology departments in the United States that had a doctoral program
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Banks
+</td>
+<td style="text-align:left;">
+2015-12-07
+</td>
+<td style="text-align:left;">
+management researchers
+</td>
+<td style="text-align:left;">
+authors of articles published from 2009 to 2013 in 10 high impact management journals
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Banks
+</td>
+<td style="text-align:left;">
+2015-12-07
+</td>
+<td style="text-align:left;">
+management researchers
+</td>
+<td style="text-align:left;">
+authors of articles published from 2009 to 2013 in 10 low impact management journals
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bosco
+</td>
+<td style="text-align:left;">
+2010-12-31
+</td>
+<td style="text-align:left;">
+organizational psychologists
+</td>
+<td style="text-align:left;">
+authors of articles published in Journal of Applied Psychology and Personnel Psychology from 2005 through 2010
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fiedler
+</td>
+<td style="text-align:left;">
+2015-10-19
+</td>
+<td style="text-align:left;">
+German psychology researchers
+</td>
+<td style="text-align:left;">
+members of the German Psychological Association out of the 3,200 total members who responded
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Agnoli
+</td>
+<td style="text-align:left;">
+2016-08-18
+</td>
+<td style="text-align:left;">
+Italian psychology researchers
+</td>
+<td style="text-align:left;">
+people on the mailing list of the Italian Association of Psychology (AIP)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Heroux
+</td>
+<td style="text-align:left;">
+2016-11-28
+</td>
+<td style="text-align:left;">
+electrical brain stimulation researchers
+</td>
+<td style="text-align:left;">
+sample of corresponding authors of PubMed studies (as of Dec 31, 2015) that used tDCS or similar methods, who listed their email addresses and responded to the survey
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Motyl
+</td>
+<td style="text-align:left;">
+2017-04-27
+</td>
+<td style="text-align:left;">
+social and personality psychology researchers
+</td>
+<td style="text-align:left;">
+people on the mailing lists of Social and Personality Societies: SPSP, ESSP, SASP
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fox
+</td>
+<td style="text-align:left;">
+2017-12-31
+</td>
+<td style="text-align:left;">
+American psychology researchers
+</td>
+<td style="text-align:left;">
+tenured or tenure-track researchers at PhD-granting psychology departments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Krishna
+</td>
+<td style="text-align:left;">
+2016-07-31
+</td>
+<td style="text-align:left;">
+German psychology students
+</td>
+<td style="text-align:left;">
+people who wrote a BA or MA thesis in psychology at a German public university
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolff
+</td>
+<td style="text-align:left;">
+2018-01-10
+</td>
+<td style="text-align:left;">
+ego depletion psychology researchers
+</td>
+<td style="text-align:left;">
+researchers who had authored papers on ego depletion (identified by literature search and backwards search on meta-analysis)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Janke
+</td>
+<td style="text-align:left;">
+2018-07-18
+</td>
+<td style="text-align:left;">
+German junior psychology researchers
+</td>
+<td style="text-align:left;">
+doctoral candidates and postdocs who had not acquired a professorship and who were on the mailing list of the German Psychological Association
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rabelo
+</td>
+<td style="text-align:left;">
+2019-11-19
+</td>
+<td style="text-align:left;">
+Brazilian psychology researchers
+</td>
+<td style="text-align:left;">
+people in Brazilian psychology graduate programs and people on the mailing lists of the Sociedade Brasileira de Psicologia and the Associação Nacional de Pesquisa e Pós-Graduação em Psicologia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Swift
+</td>
+<td style="text-align:left;">
+2019-11-12
+</td>
+<td style="text-align:left;">
+clinical psychology researchers
+</td>
+<td style="text-align:left;">
+faculty/students at APA-Accredited clinical/counseling doctoral programs
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="effective-date" class="section level3">
+<h3>Effective date</h3>
+<p>Given survey frame &amp; question wording, the most current actual effective date (yyyy/mm/dd) for use in plots, etc. If a day wasn’t specified, the last day of the specified month was used. If no end date of the survey was reported, the submission date of the article was used, or the publication date if the submission date was not listed.</p>
+<pre class="r"><code>behavior_estimates %&gt;% 
+  mutate(effective_date = year(effective_date)) %&gt;% 
+  tabyl(effective_date)</code></pre>
+<pre><code>##  effective_date n    percent
+##            2010 1 0.03448276
+##            2011 2 0.06896552
+##            2013 1 0.03448276
+##            2015 3 0.10344828
+##            2016 4 0.13793103
+##            2017 6 0.20689655
+##            2018 4 0.13793103
+##            2019 8 0.27586207</code></pre>
+</div>
+<div id="inferences-made-in-extracting-estimates" class="section level3">
+<h3>Inferences made in extracting estimates</h3>
+<pre class="r"><code>behavior_estimates %&gt;% 
+  filter(inferences_made != &quot;no&quot;) %&gt;% 
+  select(first_author, inferences_made) %&gt;% 
+  kable() %&gt;% 
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+first_author
+</th>
+<th style="text-align:left;">
+inferences_made
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Houtkoop
+</td>
+<td style="text-align:left;">
+yes estimated from a figure
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+van den Akker
+</td>
+<td style="text-align:left;">
+yes assumed that reported prevalence rate was among all participants (including those who said they didn’t know)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fiedler
+</td>
+<td style="text-align:left;">
+yes estimated from a figure
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="whether-the-estimates-are-relevant-to-undermining-replicability-qrp-or-supporting-it-os" class="section level3">
+<h3>Whether the estimates are relevant to undermining replicability (QRP) or supporting it (OS)</h3>
+<pre class="r"><code>behavior_estimates %&gt;% 
+  tabyl(type_os_qrp)</code></pre>
+<pre><code>##  type_os_qrp  n   percent
+##           os 11 0.3793103
+##          qrp 18 0.6206897</code></pre>
+</div>
+<div id="whether-the-estimates-are-from-self-report-or-from-audits" class="section level3">
+<h3>Whether the estimates are from self-report or from audits</h3>
+<pre class="r"><code>behavior_estimates %&gt;% 
+  tabyl(type_sr_audit)</code></pre>
+<pre><code>##  type_sr_audit  n  percent
+##          audit  4 0.137931
+##             sr 25 0.862069</code></pre>
+</div>
+<div id="qrp-question-stems-and-response-options" class="section level3">
+<h3>QRP: question stems and response options</h3>
+<pre class="r"><code>behavior_estimates %&gt;% 
+  filter(type_os_qrp == &quot;qrp&quot;) %&gt;% 
+  group_by(question_stem, response_options) %&gt;% 
+  summarize(n_samples = n(),
+            papers = paste0(unique(first_author), collapse = &quot;,&quot;)) %&gt;% 
+  select(n_samples, papers, everything()) %&gt;% 
+  arrange(-n_samples) %&gt;% 
+  kable() %&gt;% 
+  kable_styling()</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;question_stem&#39; (override with `.groups` argument)</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+n_samples
+</th>
+<th style="text-align:left;">
+papers
+</th>
+<th style="text-align:left;">
+question_stem
+</th>
+<th style="text-align:left;">
+response_options
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+Banks,Fiedler,Heroux,Wolff,Rabelo,Swift
+</td>
+<td style="text-align:left;">
+Have you ever …
+</td>
+<td style="text-align:left;">
+Yes; No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Makel
+</td>
+<td style="text-align:left;">
+How frequently have you …
+</td>
+<td style="text-align:left;">
+Never; Once; Occasionally; Frequently; Almost Always
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+John
+</td>
+<td style="text-align:left;">
+Whether you have engaged in
+</td>
+<td style="text-align:left;">
+Yes; No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Fox
+</td>
+<td style="text-align:left;">
+Did you use a QRP in the past 12 months, or did this not happen?
+</td>
+<td style="text-align:left;">
+I used a QRP in the past 12 months; This did not happen
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Agnoli
+</td>
+<td style="text-align:left;">
+Have you personally ever adoped this research practice
+</td>
+<td style="text-align:left;">
+Yes; No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Motyl
+</td>
+<td style="text-align:left;">
+How frequently have you …
+</td>
+<td style="text-align:left;">
+Never; Rarely; Sometimes; Often; Always
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Janke
+</td>
+<td style="text-align:left;">
+How often have you…
+</td>
+<td style="text-align:left;">
+5-point Likert from Never to Very often
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Krishna
+</td>
+<td style="text-align:left;">
+In my thesis work, I at least once engaged in …
+</td>
+<td style="text-align:left;">
+Yes; No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bosco
+</td>
+<td style="text-align:left;">
+Whether any changes in hypotheses had occurred between the completion of data collection and subsequent publication, and to describe any such changes
+</td>
+<td style="text-align:left;">
+open-ended, then coded by researchers
+</td>
+</tr>
+</tbody>
+</table>
+<div id="qrp-extracted-estimate-type" class="section level4">
+<h4>QRP extracted estimate type</h4>
+<pre class="r"><code>behavior_estimates %&gt;% 
+  filter(type_os_qrp == &quot;qrp&quot;) %&gt;% 
+  tabyl(estimate_type)</code></pre>
+<pre><code>##                               estimate_type  n    percent
+##                             binary all time 14 0.77777778
+##  binary all time for ego depletion projects  1 0.05555556
+##                     binary specific project  2 0.11111111
+##                         binary time-limited  1 0.05555556</code></pre>
+</div>
+</div>
+<div id="os-question-stems-and-response-options" class="section level3">
+<h3>OS: question stems and response options</h3>
+<pre class="r"><code>behavior_estimates %&gt;% 
+  filter(type_os_qrp == &quot;os&quot;) %&gt;% 
+  select(question_stem, response_options) %&gt;% 
+  distinct() %&gt;% 
+  kable() %&gt;% 
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+question_stem
+</th>
+<th style="text-align:left;">
+response_options
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+not specified
+</td>
+<td style="text-align:left;">
+not specified
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Percentage of published articles for which you have shared data
+</td>
+<td style="text-align:left;">
+Percentage fill-in.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+How frequently have you …
+</td>
+<td style="text-align:left;">
+Never; Rarely; Sometimes; Often; Always
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+What is your experience with …
+</td>
+<td style="text-align:left;">
+Unaware; Aware but not used; Some experience; Regular Use
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Approximately when was the first time you…
+</td>
+<td style="text-align:left;">
+Month and year.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+How frequently have you …
+</td>
+<td style="text-align:left;">
+Never; Once; Occasionally; Frequently; Almost Always
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Did you ever…
+</td>
+<td style="text-align:left;">
+Yes; No; I don’t know
+</td>
+</tr>
+</tbody>
+</table>
+<div id="os-extracted-estimate-type" class="section level4">
+<h4>OS extracted estimate type</h4>
+<pre class="r"><code>behavior_estimates %&gt;% 
+  filter(type_os_qrp == &quot;os&quot;) %&gt;% 
+  tabyl(estimate_type)</code></pre>
+<pre><code>##            estimate_type n    percent
+##                          4 0.36363636
+##          binary all time 6 0.54545455
+##  binary specific project 1 0.09090909</code></pre>
+</div>
 </div>
 </div>
 
@@ -993,7 +1900,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeCodeFolding("hide" === "show");
+  window.initializeCodeFolding("show" === "show");
 });
 </script>
 

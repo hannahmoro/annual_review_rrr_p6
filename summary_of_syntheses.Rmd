@@ -1,8 +1,14 @@
 ---
 title: "Summary of estimates of QRP/OS behaviors among psychologists"
 author: "Hannah Moshontz"
-date: "1/10/2021"
-output: html_document
+date: '`r format(Sys.time(), "%Y-%m-%d")`'
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: show
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -11,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Setup
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(janitor)
 library(gsheet)
@@ -23,18 +29,18 @@ library(psych)
 Import and glimpse
 ```{r}
 behavior_estimates <- gsheet::gsheet2tbl("https://docs.google.com/spreadsheets/d/1fY6gPYEY3283W3RPT1u5DmMwuAc-mFZoDdfUb4vcvEI/edit#gid=1789844879") %>% 
-  slice(-1) %>% 
-  clean_names("snake") %>% 
+  slice(-1) %>% #drop explanatory row on coding sheet
+  clean_names("snake") %>% #variables to snake case
   mutate(across(everything(), ~str_replace(.x, "^na$", ""))) %>% #replace "na" with null
     mutate(across(everything(), ~str_replace(.x, "^NA$", ""))) %>% #replace "NA" with null
     mutate(across(everything(), ~str_replace(.x, "^unknown$", ""))) %>% #replace "unknown" with null
-  mutate(across(contains("date"), mdy)) %>% 
-  glimpse()
+  mutate(across(contains("date"), mdy)) %>% #parse date as a date
+  glimpse() 
 ```
 
-### qrp table
+### Behaviors that undermine replicability (qrp behaviors): self-report table
 
-basic table
+Get information to include in the table.
 ```{r}
 qrp_summary <- behavior_estimates %>% 
   filter(type_os_qrp == "qrp",
@@ -53,23 +59,22 @@ qrp_summary <- behavior_estimates %>%
   mutate(effective_date = year(effective_date)) 
 ```
 
-calculating simple descriptives
+Calculate min, median, max.
 ```{r}
 qrp_summary_descriptives <- qrp_summary %>% 
   select(any_qrp:falsified) %>% 
+  mutate(across(everything(), as.numeric)) %>% 
   describe(na.rm = TRUE) %>% 
   select(min, median, max) %>% 
-  t() %>% 
-  as_tibble()
-
-names(qrp_summary_descriptives) <- str_remove(names(qrp_summary_descriptives), "\\*")
+  t() %>% #transpose
+  as_tibble() #make matrix a tibble
 
 qrp_summary_descriptives <- qrp_summary_descriptives %>% 
   mutate(first_author = c("min", "median", "max")) %>%
   mutate(across(everything(), as.character))
 ```
 
-calculating weighted averages
+Calculate weighted averages.
 ```{r}
 weighted_mean <- qrp_summary %>% 
   select(n, any_qrp:falsified) %>% 
@@ -79,7 +84,7 @@ weighted_mean <- qrp_summary %>%
   mutate(across(everything(), as.character))
 ```
 
-exporting complete table
+Create table, round values, save as csv.
 ```{r}
 qrp_summary <- bind_rows(qrp_summary_descriptives, weighted_mean) %>%
   bind_rows(qrp_summary) %>% 
@@ -99,9 +104,9 @@ read_csv("qrp_estimates.csv") %>% #reimporting to correctly parse numeric
 ```
 
 
-### os self-report table
+### Behaviors that promote replicability (open science behaviors): self-report table
 
-basic table
+Get information to include in the table.
 ```{r}
 os_summary <- behavior_estimates %>% 
   filter(type_os_qrp == "os") %>% 
@@ -120,23 +125,22 @@ os_summary <- behavior_estimates %>%
   mutate(effective_date = year(effective_date)) 
 ```
 
-calculating simple descriptives
+Calculate min, median, max.
 ```{r}
 os_summary_descriptives <- os_summary %>% 
   select(posted_data:preregistered) %>% 
+  mutate(across(everything(), as.numeric)) %>% 
   describe(na.rm = TRUE) %>% 
   select(min, median, max) %>% 
   t() %>% 
   as_tibble()
-
-names(os_summary_descriptives) <- str_remove(names(os_summary_descriptives), "\\*")
 
 os_summary_descriptives <- os_summary_descriptives %>% 
   mutate(first_author = c("min", "median", "max")) %>%
   mutate(across(everything(), as.character))
 ```
 
-calculating weighted averages
+Calculate weighted averages.
 ```{r}
 os_weighted_mean <- os_summary %>% 
   select(n, posted_data:preregistered) %>% 
@@ -146,7 +150,7 @@ os_weighted_mean <- os_summary %>%
   mutate(across(everything(), as.character))
 ```
 
-exporting complete table
+Create table, round values, save as csv.
 ```{r}
 os_summary <- bind_rows(os_summary_descriptives, os_weighted_mean) %>%
   bind_rows(os_summary) %>% 
@@ -165,9 +169,9 @@ read_csv("os_estimates.csv") %>% #reimporting to correctly parse numeric
 ```
 
 
-### os self-report table
+### Behaviors that promote replicability (open science behaviors): audit table
 
-basic table
+Get information to include in the table.
 ```{r}
 os_audit_summary <- behavior_estimates %>% 
   filter(type_os_qrp == "os") %>% 
@@ -186,23 +190,22 @@ os_audit_summary <- behavior_estimates %>%
   mutate(effective_date = year(effective_date)) 
 ```
 
-calculating simple descriptives
+Calculate min, median, max.
 ```{r}
 os_audit_summary_descriptives <- os_audit_summary %>% 
   select(posted_data:preregistered) %>% 
+  mutate(across(everything(), as.numeric)) %>% 
   describe(na.rm = TRUE) %>% 
   select(min, median, max) %>% 
   t() %>% 
   as_tibble()
-
-names(os_audit_summary_descriptives) <- str_remove(names(os_audit_summary_descriptives), "\\*")
 
 os_audit_summary_descriptives <- os_audit_summary_descriptives %>% 
   mutate(first_author = c("min", "median", "max")) %>%
   mutate(across(everything(), as.character))
 ```
 
-calculating weighted averages
+Calculate weighted averages.
 ```{r}
 os_audit_weighted_mean <- os_audit_summary %>% 
   select(n, posted_data:preregistered) %>% 
@@ -212,7 +215,7 @@ os_audit_weighted_mean <- os_audit_summary %>%
   mutate(across(everything(), as.character))
 ```
 
-exporting complete table
+Create table, round values, save as csv.
 ```{r}
 os_audit_summary <- bind_rows(
   os_audit_summary_descriptives, 

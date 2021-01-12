@@ -6,12 +6,37 @@ output:
   html_document:
     toc: true
     toc_float: true
-    code_folding: hide
+    code_folding: show
 editor_options: 
   chunk_output_type: console
 ---
 
 This markdown provides an overview of articles evaluted for inclusion in the RRR Project 6 synthesis of psychology researcher behavior change.
+
+The literature evaluated here were identified by overlapping searches:
+
+
+* Forward search on John et al	use of QRP in Google Scholar
+* Replicated the search strategy in Stricker & Gunther (2019) 
+* Google Scholar forward search on Broome	et al. (2005)
+* PsychInfo title and abstract search for "questionable research practices" AND psycholog*
+* PsychInfo title search for "open data" AND psycholog*	open data
+* PsychInfo title search for "open materials" AND psycholog*	open materials
+* PsychInfo title search for "open code" AND psycholog*	open code
+* Zotero folder from OSF on surveys of open science behaviors
+* Backwards searches on included articles and meta-science papers
+* Twitter post asking about published and unpublished behavior surveys on ether qrp or os behaviors
+
+Studies were evaluated for inclusion if the title and abstract suggested that the survey may have:
+
+* asked psychologists about their own past use of QRP or open science behaviors
+
+Studies were included if they:
+
+* estimated or shared data that allowed for the estimate of rates among psychologists using original data
+* asked about at least one of the 10 QRPs evaluated by John et al. or about sharing data, code, or materials
+
+Studies were coded by Hannah Moshontz, Laura Scherer, or Joe Hilgard. The values for self-report estimates, effective date, and any value that required inference were confirmed in a group meeting.
 
 ## Set up
 ```{r, warning = FALSE, message = FALSE}
@@ -20,6 +45,7 @@ library(tidyverse)
 library(janitor)
 library(gsheet)
 library(kableExtra)
+library(lubridate)
 ```
 
 ## Import codes from google sheet
@@ -52,7 +78,6 @@ behavior_survey_codes %>%
 ```{r}
 behavior_survey_codes %>% 
   filter(relevant == "yes") %>% 
-  filter(relevant_reason != "NA") %>% 
   select(first_author, relevant_reason) %>% 
   kable() %>% 
   kable_styling()
@@ -62,7 +87,6 @@ behavior_survey_codes %>%
 ```{r}
 behavior_survey_codes %>% 
   filter(relevant == "maybe") %>% 
-  filter(relevant_reason != "NA") %>% 
   select(first_author, relevant_reason) %>% 
   kable() %>% 
   kable_styling()
@@ -72,7 +96,6 @@ behavior_survey_codes %>%
 ```{r}
 behavior_survey_codes %>% 
   filter(relevant == "no") %>% 
-  filter(relevant_reason != "NA") %>% 
   select(first_author, relevant_reason) %>% 
   kable() %>% 
   kable_styling()
@@ -97,7 +120,7 @@ There are `r nrow(behavior_estimates)` samples from `r length(unique(behavior_es
 
 ```{r}
 behavior_estimates %>% 
-  select(target_population, sample) %>% 
+  select(first_author, effective_date, target_population, sample) %>% 
   distinct() %>% 
   kable() %>% 
   kable_styling()
@@ -143,8 +166,11 @@ behavior_estimates %>%
 ```{r}
 behavior_estimates %>% 
   filter(type_os_qrp == "qrp") %>% 
-  select(question_stem, response_options) %>% 
-  distinct() %>% 
+  group_by(question_stem, response_options) %>% 
+  summarize(n_samples = n(),
+            papers = paste0(unique(first_author), collapse = ",")) %>% 
+  select(n_samples, papers, everything()) %>% 
+  arrange(-n_samples) %>% 
   kable() %>% 
   kable_styling()
 ```

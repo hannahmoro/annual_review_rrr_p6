@@ -11,7 +11,7 @@ osf_report <- read_csv("./osf_report.csv") %>%
   slice(-1) %>%
   select(key_performance_indicators, definition,
          source, caveats, raw_data_location,
-         x2012:x2020_actual) %>%
+         x2012:x2020_actual, -x2020_target) %>%
   rename(x2018 = x2018_actual,
          x2019 = x2019_actual,
          x2020 = x2020_actual) %>%
